@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {sidebarModule} from "@/store/sidebar";
+import {usersModule} from "@/store/users";
 
 Vue.use(Vuex)
 
@@ -19,6 +20,7 @@ export const store = new Vuex.Store({
   actions: {
   },
   modules: {
-    sidebarModule
+    sidebarModule,
+    usersModule
   }
 })
