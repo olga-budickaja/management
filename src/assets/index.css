@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+* > a {
+    text-decoration: none;
+}
+*::-webkit-scrollbar {
+    width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #e5e3e3;
+    outline: 1px solid #e8e9ea;
+}
+
+body, html {
+    background: #F5F5F5;
+    height: calc(100vh + 300px);
+}
+
+.header {
+    margin-top: 0 !important;
+}
+
+.v-application .mt-5 {
+    margin: 0 !important;
+}
+
+.border {
+    border-bottom: 1px solid #d3d3d3 !important;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.top {
+    top: -60px;
+}
+
+.opacity {
+    opacity: 0.8;
+}
+
+.displayFlex {
+    display: flex;
+}
+
+.text-bold {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.theme--light.v-chip:not(.v-chip--active) {
+    background: #e0f7fa !important;
+}
+
+.userList__description {
+    display: flex;
+    align-items: center;
+}
+
+.userList__descriptionTextTitle {
+    line-height: 1rem !important;
+}
+
+.userList__descriptionTextSubtitle {
+    display: flex;
+    align-items: center;
+}
