@@ -33,7 +33,7 @@ body, html {
     margin: 0 !important;
 }
 .height {
-    min-height: calc(100vh + 250px);
+    min-height: calc(100vh + 170px);
 }
 .border {
     border-bottom: 1px solid #d3d3d3 !important;

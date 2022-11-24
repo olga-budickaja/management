@@ -3,11 +3,13 @@ import MyDropdownButtons from "@/UI/MyDropdownButtons";
 import MyInputAddUser from "@/UI/MyInputAddUser";
 import MyLoader from "@/UI/MyLoader";
 import MyTooltip from "@/UI/MyTooltip";
+import MyCheckbox from "@/UI/MyCheckbox";
 
 export default [
     MyButtonDrop,
     MyDropdownButtons,
     MyInputAddUser,
     MyLoader,
-    MyTooltip
+    MyTooltip,
+    MyCheckbox
 ]

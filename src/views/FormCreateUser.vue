@@ -5,99 +5,99 @@
       @submit.prevent="handlerSubmit"
       v-if="!isLoading"
   >
-    <v-layout row wrap col-12 >
-      <v-flex md6 sm12 pl-4 pr-4 xs12>
-        <my-input-add-user
-            label="Surname"
-            v-model="surname"
-            :value="surname"
-            :input-rules="[inputRules.required, inputRules.name, inputRules.length]"
-            hide-details="auto"
-            aria-required="true"
-        >
-        </my-input-add-user>
-      </v-flex>
-      <v-flex md6 sm12 pl-4 pr-4 xs12>
-        <my-input-add-user
-            label="Firstname"
-            :value="firstname"
-            v-model="firstname"
-            :input-rules="[inputRules.required, inputRules.name, inputRules.length]"
-            hide-details="auto"
-            aria-required="true"
-        >
-        </my-input-add-user>
-      </v-flex>
-    </v-layout>
+      <v-layout row wrap col-12>
+        <v-flex md6 sm12 pl-4 pr-4 xs12>
+          <my-input-add-user
+              label="Surname"
+              v-model="surname"
+              :value="surname"
+              :input-rules="[inputRules.required, inputRules.name, inputRules.length]"
+              hide-details="auto"
+              aria-required="true"
+          >
+          </my-input-add-user>
+        </v-flex>
+        <v-flex md6 sm12 pl-4 pr-4 xs12>
+          <my-input-add-user
+              label="Firstname"
+              :value="firstname"
+              v-model="firstname"
+              :input-rules="[inputRules.required, inputRules.name, inputRules.length]"
+              hide-details="auto"
+              aria-required="true"
+          >
+          </my-input-add-user>
+        </v-flex>
+      </v-layout>
 
-    <v-layout row wrap col-12 >
-      <v-flex md6 sm12 pl-4 pr-4 xs12>
-        <my-input-add-user
-            label="Username"
-            v-model="username"
-            :value="username"
-            :input-rules="[inputRules.required, inputRules.length]"
-            hide-details="auto"
-            aria-required="true"
-        >
-        </my-input-add-user>
-      </v-flex>
-      <v-flex md6 sm12 pl-4 pr-4 xs12>
-        <my-input-add-user
-            label="Email address"
-            :value="email"
-            v-model="email"
-            hide-details="auto"
-            :input-rules="[inputRules.required, inputRules.email]"
-            aria-required="true"
-        >
-        </my-input-add-user>
-      </v-flex>
-    </v-layout>
+      <v-layout row wrap col-12>
+        <v-flex md6 sm12 pl-4 pr-4 xs12>
+          <my-input-add-user
+              label="Username"
+              v-model="username"
+              :value="username"
+              :input-rules="[inputRules.required, inputRules.length]"
+              hide-details="auto"
+              aria-required="true"
+          >
+          </my-input-add-user>
+        </v-flex>
+        <v-flex md6 sm12 pl-4 pr-4 xs12>
+          <my-input-add-user
+              label="Email address"
+              :value="email"
+              v-model="email"
+              hide-details="auto"
+              :input-rules="[inputRules.required, inputRules.email]"
+              aria-required="true"
+          >
+          </my-input-add-user>
+        </v-flex>
+      </v-layout>
 
-    <v-layout row>
-      <v-flex pl-4 pr-4 md12>
-        <v-select
-            :items="items"
-            label="Realm"
-            v-model="realm"
-            outlined
-            color="grey lighten-1"
-            hide-details="auto"
-            aria-required="true"
-        >
-        </v-select>
-      </v-flex>
-    </v-layout>
-    <v-card-title>
-      Password
-    </v-card-title>
-    <v-layout row wrap col-12 >
-      <v-flex md6 sm12 pl-4 pr-4 xs12>
-        <my-input-add-user
-            :append-icon="show ? icon[0] : icon[1]"
-            label="Password"
-            :value="password"
-            v-model="password"
-            :type="show ? 'text' : 'password'"
-            :input-rules="[inputRules.required, inputRules.password]"
-            hide-details="auto"
-            aria-required="true"
-        ></my-input-add-user>
-      </v-flex>
-      <v-flex md6 sm12 pl-4 pr-4 xs12>
-        <my-input-add-user
-            :append-icon="show ? icon[0] : icon[1]"
-            label="Confirm Password"
-            v-model="confirmPassword"
-            :value="confirmPassword"
-            :type="show ? 'text' : 'password'"
-            :input-rules="[inputRules.required, inputRules.confirmPassword]"
-            hide-details="auto"
-            aria-required="true"
-        ></my-input-add-user>
-      </v-flex>
-    </v-layout>
+      <v-layout row>
+        <v-flex pl-4 pr-4 md12>
+          <v-select
+              :items="items"
+              label="Realm"
+              v-model="realm"
+              outlined
+              color="grey lighten-1"
+              hide-details="auto"
+              aria-required="true"
+          >
+          </v-select>
+        </v-flex>
+      </v-layout>
+      <v-card-title>
+        Password
+      </v-card-title>
+      <v-layout row wrap col-12 >
+        <v-flex md6 sm12 pl-4 pr-4 xs12>
+          <my-input-add-user
+              :append-icon="show ? icon[0] : icon[1]"
+              label="Password"
+              :value="password"
+              v-model="password"
+              :type="show ? 'text' : 'password'"
+              :input-rules="[inputRules.required, inputRules.password]"
+              hide-details="auto"
+              aria-required="true"
+          ></my-input-add-user>
+        </v-flex>
+        <v-flex md6 sm12 pl-4 pr-4 xs12>
+          <my-input-add-user
+              :append-icon="show ? icon[0] : icon[1]"
+              label="Confirm Password"
+              v-model="confirmPassword"
+              :value="confirmPassword"
+              :type="show ? 'text' : 'password'"
+              :input-rules="[inputRules.required, inputRules.confirmPassword]"
+              hide-details="auto"
+              aria-required="true"
+          ></my-input-add-user>
+        </v-flex>
+      </v-layout>
     <div class="buttons  relative text-center mt-5">
       <router-link to="/">
         <v-btn
@@ -140,6 +140,9 @@ export default {
     MyInputAddUser,
     MyTooltip
   },
+  prop: {
+
+  },
   data: () => ({
     component: '',
     value: '',
@@ -174,7 +177,7 @@ export default {
             date: `${new Date().getDate()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
             time: `${new Date().getHours()}:${new Date().getMinutes()}`,
           }
-          await this.$store.dispatch('userModule/createUser', formData);
+          // await this.$store.dispatch('userModule/createUser', formData);
 
           this.message = 'The user is registered. Add him roles'
           this.tooltipShow()
@@ -194,14 +197,14 @@ export default {
     },
     routApplications() {
       setTimeout(() => {
-        this.$router.push('/check-systems-roles')
+        this.$router.push('/checkbox-create-user')
       }, 3000)
     },
   },
   computed: {
     ...mapState({
       isLoading: state => state.usersModule.isLoading,
-      inputRules: state => state.validationModule.inputRules
+      inputRules: state => state.formModule.inputRules
     }),
   }
 

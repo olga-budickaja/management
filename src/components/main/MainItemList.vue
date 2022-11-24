@@ -22,7 +22,7 @@
             </v-icon>
           </div>
         </v-flex>
-        <v-flex xl9 md8 sm8 class="align-self-center pa-2">
+        <v-flex xl7 md6 sm6 class="align-self-center pa-2">
           <v-card-title class="text-h6 pa-0 align-self-center text-left">
             {{ `${user.surname}, ${user.firstname}` }}
           </v-card-title>
@@ -36,7 +36,7 @@
             </template>
           </span>
         </v-flex>
-        <v-flex xl1 md1 sm1 class="text-right align-self-center">
+        <v-flex xl3 md3 sm3 class="align-self-center">
           <MyDropdownButtons />
         </v-flex>
       </v-layout>
@@ -63,9 +63,6 @@ export default {
     condition: false
   }),
   methods: {
-    visibled() {
-      this.show = !this.show
-    }
   },
   computed: {
     ...mapState({

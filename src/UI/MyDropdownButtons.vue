@@ -1,5 +1,5 @@
 <template>
-  <div class="blue-grey">
+  <div>
     <v-icon v-on:click="show = !show" class="ml-16 usersList__btnDrop">mdi-dots-vertical</v-icon>
     <transition name="fade">
       <v-list v-if="show" :offset-x="offset" class="usersList__drop">
@@ -8,12 +8,11 @@
               v-model="selectedItem"
               color="cyan"
           >
-            <div>Hello</div>
-<!--            <MyButtonDrop-->
-<!--                v-for="btn in btnDrops"-->
-<!--                :btn="btn"-->
-<!--                :key="btn.id"-->
-<!--            />-->
+            <MyButtonDrop
+                v-for="btn in btnDrops"
+                :btn="btn"
+                :key="btn.name"
+            />
           </v-list-item-group>
 
         </v-list-item-title>
@@ -44,12 +43,22 @@ export default {
   },
   computed: {
     ...mapState({
-      btnDrops: state => state.ButtonsModule.btnDrops
+      btnDrops: state => state.buttonsModule.btnDrops
     }),
   }
 }
 </script>
 
 <style scoped>
-
+.usersList__drop {
+  position: absolute;
+  right: 40px;
+  background: #fff;
+  border: 1px solid #d5d5d5;
+  box-shadow: 11px 9px 25px 0 rgba(0,0,0,0.75);
+  padding: 20px;
+  max-width: 300px;
+  height: auto;
+  z-index: 1;
+}
 </style>

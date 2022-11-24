@@ -1,4 +1,4 @@
-export const ButtonsModule = {
+export const buttonsModule = {
     state: () => ({
         btnDrops: [
             { id: 100, name: 'Edit', icon: 'mdi-file-edit-outline' },

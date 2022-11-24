@@ -10,6 +10,18 @@ const routes = [
     meta: {layout: 'main'},
     component: () => import('../views/HomeView.vue')
   },
+  {
+    path: '/form-create-user',
+    name: 'form-create-user',
+    meta: {layout: 'form'},
+    component: () => import('../views/FormCreateUser.vue')
+  },
+  {
+    path: '/checkbox-create-user',
+    name: 'checkbox-create-user',
+    meta: {layout: 'form'},
+    component: () => import('../views/CheckboxCreateUser.vue')
+  },
   // {
   //   path: '/about',
   //   name: 'about',

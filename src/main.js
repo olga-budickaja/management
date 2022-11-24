@@ -10,6 +10,7 @@ import {store} from './store/index'
 components.forEach(component => {
   Vue.component(component.name, component)
 })
+
 Vue.use(Vuex)
 
 Vue.config.productionTip = false
