@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="usersListItem border">
-      <v-card flat class="pb-3 pt-3">
+      <v-card flat class="pa-5">
         <v-layout col-12 row>
           <v-flex md11 xs11>
             <v-layout col-12 row wrap>
@@ -50,14 +50,14 @@
                       md11
                       wrap
                   >
-                      <span
+                      <div
                           v-for="role in roles"
                           :key="role.id"
                       >
-                        <v-chip v-if="role.user === user.id">
+                        <v-chip v-if="role.user === user.id" class="mr-3">
                           {{ role.name }}
                         </v-chip>
-                      </span>
+                      </div>
 
                   </v-flex>
                   <v-flex md1 class="displayFlex">
@@ -101,8 +101,7 @@ export default {
   },
   computed: {
     ...mapState({
-      applications: state => state.formModule.applications,
-      roles: state => state.formModule.roles
+      roles: state => state.usersModule.roles
     }),
   },
 }
@@ -114,16 +113,5 @@ export default {
 }
 .inactive .icon-color {
   color: #d16a42 !important;
-}
-.usersList__drop {
-  position: absolute;
-  right: 40px;
-  background: #fff;
-  border: 1px solid #d5d5d5;
-  box-shadow: 11px 9px 25px 0 rgba(0,0,0,0.75);
-  padding: 20px;
-  max-width: 300px;
-  height: auto;
-  z-index: 1;
 }
 </style>

@@ -75,5 +75,18 @@ export default {
 </script>
 
 <style scoped>
-
+.user-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.user-list-enter-active, .user-list-leave-active {
+  transition: all 0.2s ease;
+}
+.user-list-enter, .user-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.user-list-move {
+  transition: transform 0.4s ease;
+}
 </style>

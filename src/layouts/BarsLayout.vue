@@ -11,14 +11,15 @@
 </template>
 
 <script>
-
 import Navbar from "@/components/bars/Navbar";
 import Sidebar from "@/components/bars/Sidebar";
 
 export default {
   name: 'bars-layout',
-  Navbar,
-  Sidebar
+  components: {
+    Navbar,
+    Sidebar
+  }
 }
 </script>
 

@@ -22,6 +22,12 @@ const routes = [
     meta: {layout: 'form'},
     component: () => import('../views/CheckboxCreateUser.vue')
   },
+  {
+    path: '/users-list',
+    name: 'users-with-store',
+    meta: {layout: 'bars'},
+    component: () => import('../views/UsersListPage.vue')
+  },
   // {
   //   path: '/about',
   //   name: 'about',
