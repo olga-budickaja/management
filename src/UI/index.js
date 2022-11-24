@@ -6,6 +6,7 @@ import MyTooltip from "@/UI/MyTooltip";
 import MyCheckbox from "@/UI/MyCheckbox";
 import MyInput from "@/UI/MyInput";
 import MySelect from "@/UI/MySelect";
+import MySelectCheck from "@/UI/MySelectCheck";
 
 export default [
     MyButtonDrop,
@@ -15,5 +16,6 @@ export default [
     MyTooltip,
     MyCheckbox,
     MyInput,
-    MySelect
+    MySelect,
+    MySelectCheck
 ]
