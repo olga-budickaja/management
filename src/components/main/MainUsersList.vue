@@ -1,34 +1,28 @@
 <template>
   <v-layout row class="height hidden-xs-only white overflow-x-auto usersList relative">
     <v-flex>
-        <MainItemList
-            v-for="user in users"
-            :user="user"
-            :key="user.id"
-        />
+      <v-card class="border relative pa-6 pr-16" flat>
+        <SearchUsers />
+      </v-card>
+      <MainItemList
+          v-for="user in users"
+          :user="user"
+          :key="user.id"
+      />
     </v-flex>
-<!--    <router-link to="/users-list">-->
-<!--      <v-btn-->
-<!--          class="userList__btn"-->
-<!--          fab-->
-<!--          dark-->
-<!--          small-->
-<!--          color="white"-->
-<!--      >-->
-<!--        <v-icon color="cyan" class="text-h5">-->
-<!--          mdi-chevron-right-->
-<!--        </v-icon>-->
-<!--      </v-btn>-->
-<!--    </router-link>-->
   </v-layout>
 </template>
 
 <script>
 import {mapState} from "vuex";
 import MainItemList from "@/components/main/MainItemList";
+import SearchUsers from "@/components/sorts-search/SearchUsers";
 
 export default {
-  components: {MainItemList},
+  components: {
+    MainItemList,
+    SearchUsers
+  },
   prop: {
     users: {
       type: Array,
@@ -44,10 +38,5 @@ export default {
 </script>
 
 <style scoped>
-.userList__btn {
-  position: absolute;
-  top: 40px;
-  right: -15px;
-  z-index: 10;
-}
+
 </style>

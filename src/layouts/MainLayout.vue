@@ -7,8 +7,21 @@
         <Toolbar/>
         <section class="content height">
           <v-layout col-12 row class="grey lighten-4">
-            <v-flex md3>
+            <v-flex md3 class="relative">
               <MainUsersList class="height"/>
+              <router-link to="/users-list">
+                <v-btn
+                    class="userList__btn"
+                    fab
+                    dark
+                    small
+                    color="white"
+                >
+                  <v-icon color="cyan" class="text-h5">
+                    mdi-chevron-right
+                  </v-icon>
+                </v-btn>
+              </router-link>
             </v-flex>
             <v-flex md9>
               <router-view/>
@@ -38,5 +51,10 @@ export default {
 </script>
 
 <style scoped>
-
+.userList__btn {
+  position: absolute;
+  top: 30px;
+  right: -20px;
+  z-index: 10;
+}
 </style>
