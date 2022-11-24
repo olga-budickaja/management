@@ -77,14 +77,29 @@ export const usersModule = {
             },
         ],
         roles: [
-            {id: 'NLKGNZFKN', rol: 'VJBJBRKVB', name: 'Card Management'},
-            {id: 'KNTHNLSK', rol: 'KJGSREJGAB', name: 'Onboard Manager'},
-            {id: 'ZKLGRZK', rol: 'JAWHRAGH', name: 'Card Management'},
-            {id: 'G/GERHHI', rol: 'RJBGTBST', name: 'DIM Manager'},
-            {id: 'BJJGBD', rol: 'BJLDGSBGL', name: 'Facility Management'},
-            {id: 'HJJRYJDRY', rol: 'JBGJSGGB.', name: 'Access Manager'},
-            {id: 'HDJHDJKJJNHBFD', rol: 'JBZGSJBFJZ', name: 'DIM Manager'},
-            {id: 'DHGHYMK.L', rol: 'GSGHTHNHMIL', name: 'External Manager'},
-        ]
-    })
+            {id: 'NLKGNZFKN', rol: 'VJBJBRKVB', user: 'KJGSREJGAB', name: 'Card Management'},
+            {id: 'KNTHNLSK', rol: 'HTHTJJY', user: 'KJGSREJGAB', name: 'Onboard Manager'},
+            {id: 'ZKLGRZK', rol: 'JAWHRAGH', user: 'RJBGTBST', name: 'Card Management'},
+            {id: 'G/GERHHI', rol: 'FD.KNDFK', user: 'RJBGTBST', name: 'DIM Manager'},
+            {id: 'BJJGBD', rol: 'BJLDGSBGL', user: 'HDSHGGESN/LK', name: 'Facility Management'},
+            {id: 'HJJRYJDRY', rol: 'JBGJSGGB.', user: 'FKNGZKNFKN', name: 'Access Manager'},
+            {id: 'HDJHDJKJJNHBFD', rol: 'JBZGSJBFJZ', user: 'FKNGZKNFKN', name: 'DIM Manager'},
+            {id: 'DHGHYMK.L', rol: 'GSGHTHNHMIL', user: 'FKNGZKNFKN', name: 'External Manager'},
+        ],
+        isLoading: false
+    }),
+    mutations: {
+        setUsers(state, users) {
+            state.users = users
+        },
+        setApplications(state, applications) {
+            state.applications = applications
+        },
+        setRoles(state, roles) {
+            state.roles = roles
+        },
+    },
+    getters: {
+    },
+    namespaced: true
 }

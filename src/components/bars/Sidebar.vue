@@ -3,7 +3,7 @@
       v-model="drawer"
       :mini-variant.sync="mini"
       permanent
-      class="grey lighten-2 sidebar"
+      class="grey lighten-2 sidebar height"
       @click="!drawer"
   >
     <v-list danse>
@@ -74,7 +74,6 @@ export default {
 <style scoped>
 .sidebar {
   position: relative;
-  min-height: calc(100vh + 250px);
 }
 .sidebar__close {
   position: absolute;

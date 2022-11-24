@@ -32,7 +32,9 @@ body, html {
 .v-application .mt-5 {
     margin: 0 !important;
 }
-
+.height {
+    min-height: calc(100vh + 250px);
+}
 .border {
     border-bottom: 1px solid #d3d3d3 !important;
 }
