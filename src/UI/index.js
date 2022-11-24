@@ -4,6 +4,7 @@ import MyInputAddUser from "@/UI/MyInputAddUser";
 import MyLoader from "@/UI/MyLoader";
 import MyTooltip from "@/UI/MyTooltip";
 import MyCheckbox from "@/UI/MyCheckbox";
+import MyInput from "@/UI/MyInput";
 
 export default [
     MyButtonDrop,
@@ -11,5 +12,6 @@ export default [
     MyInputAddUser,
     MyLoader,
     MyTooltip,
-    MyCheckbox
+    MyCheckbox,
+    MyInput
 ]

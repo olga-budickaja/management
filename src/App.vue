@@ -11,12 +11,14 @@
 <script>
 import MainLayout from "@/layouts/MainLayout";
 import FormLayout from "@/layouts/FormLayout";
+import BarsLayout from "@/layouts/BarsLayout";
 
 export default {
   name: 'App',
   components: {
     MainLayout,
-    FormLayout
+    FormLayout,
+    BarsLayout
   },
   data: () => ({
     //

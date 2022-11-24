@@ -77,6 +77,6 @@ export default {
 }
 .sidebar__close {
   position: absolute;
-  bottom: 360px;
+  bottom: 100px;
 }
 </style>

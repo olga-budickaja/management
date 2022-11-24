@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar flat class="mt-2 toolbar">
+  <v-toolbar flat class="mt-2 toolbar border2">
     <router-link to="/">
       <v-btn
           class="mx-10"

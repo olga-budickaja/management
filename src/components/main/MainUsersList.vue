@@ -1,5 +1,5 @@
 <template>
-  <v-layout row class="height white overflow-x-auto usersList relative">
+  <v-layout row class="height hidden-xs-only white overflow-x-auto usersList relative">
     <v-flex>
         <MainItemList
             v-for="user in users"

@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar flat class="toolbar border">
+  <v-toolbar flat fab class="toolbar border2 mt-2">
     <v-toolbar-title
         class="text-h4 mx-14 text--lighten-10"
     >
