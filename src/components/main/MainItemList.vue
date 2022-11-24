@@ -32,7 +32,7 @@
               class="grey--text"
           >
             <template v-if="role.user === user.id">
-              {{ `${role.name},` }}
+              {{ role.name }}
             </template>
           </span>
         </v-flex>
@@ -46,7 +46,7 @@
 
 <script>
 
-import {mapGetters, mapState} from "vuex";
+import {mapState} from "vuex";
 import MyDropdownButtons from "@/UI/MyDropdownButtons";
 
 export default {
@@ -67,11 +67,7 @@ export default {
   computed: {
     ...mapState({
       roles: state => state.usersModule.roles,
-      applications: state => state.usersModule.applications
     }),
-    ...mapGetters({
-
-    })
   },
 }
 </script>

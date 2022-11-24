@@ -98,8 +98,17 @@ export const usersModule = {
         setRoles(state, roles) {
             state.roles = roles
         },
+        REMOVE_USER(state, userId) {
+            let users = state.users.filter(u => u.id !== userId);
+            state.users = users;
+        },
     },
     getters: {
+    },
+    actions: {
+        async removeUser({commit}, user) {
+            commit('REMOVE_USER', user.id);
+        },
     },
     namespaced: true
 }
