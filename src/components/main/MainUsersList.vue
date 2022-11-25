@@ -8,32 +8,41 @@
           v-for="user in users"
           :user="user"
           :key="user.id"
+          @removeUser="removedUser(user)"
       />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import {mapState} from "vuex";
 import MainItemList from "@/components/main/MainItemList";
 import SearchUsers from "@/components/sorts-search/SearchUsers";
+import {mapActions} from "vuex";
 
 export default {
   components: {
     MainItemList,
     SearchUsers
   },
-  prop: {
+  props: {
     users: {
       type: Array,
       required: true,
     },
   },
-  computed: {
-    ...mapState({
-      users: state => state.usersModule.users,
+  methods: {
+    ...mapActions({
+      removeUser: 'usersModule/removeUser',
     }),
+    removedUser(user) {
+      this.removeUser(user)
+    },
   }
+  // computed: {
+  //   ...mapState({
+  //     users: state => state.usersModule.users,
+  //   }),
+  // }
 }
 </script>
 

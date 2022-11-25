@@ -27,6 +27,7 @@
               type="checkbox"
               :value="value.value"
               :items="value.roles"
+              :click.sync="some"
           >
           </MyCheckbox>
         </div>
@@ -86,8 +87,34 @@ export default {
     checkItemModels: false,
     show: false,
     message: '',
+    some: ''
   }),
   methods: {
+    async submitHandler() {
+      if (!this.checkModels) {
+        this.message = 'Choose at least one application'
+        this.tooltipShow()
+      } else {
+        this.message = 'Data saved'
+        this.tooltipShow()
+      }
+      const appData = {
+        application: this.checkModels,
+        keyRole: this.keyRole,
+      }
+      console.log(appData)
+      try {
+        // await this.$store.dispatch('updateApplication', appData)
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    tooltipShow() {
+      this.prompt = true
+      setTimeout(() => {
+        this.show = false
+      }, 2000)
+    },
   },
   computed: {
     ...mapState({
@@ -97,6 +124,15 @@ export default {
     }),
   },
   watch: {
+    some(value) {
+      if (!this.checkItemModels) {
+        value = null
+        this.checkModels = !this.checkModels
+      } else {
+        this.checkModels = []
+      }
+      console.log(value)
+    }
   }
 }
 </script>

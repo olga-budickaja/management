@@ -1,5 +1,5 @@
 <template>
-  <v-layout class="pb-5 border" row wrap >
+  <v-layout class="pb-5 pr-10 pl-5 border" row wrap >
     <v-flex md3 sm12 xs12 class="mr-5 mb-5">
       <component :is="component=`${selectedSelect.formVision || 'SelectedNameEmail'}`" class="selectComponent"/>
     </v-flex>

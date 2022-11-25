@@ -15,8 +15,9 @@
         </v-icon>
       </v-btn>
 
-      <SelectedSortsSelected class="pt-5" />
+      <SelectedSortsSelected class="pt-5"/>
       <UsersList
+          :users="users"
           v-if="!isLoading"
       />
 
@@ -36,10 +37,10 @@
 import Toolbar from "@/components/bars/Toolbar";
 import SelectedSortsSelected from "@/components/sorts-search/SelectedSortsSelected";
 import UsersList from "@/components/users-list/UsersList";
-import {mapGetters, mapMutations, mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
-  name: 'users-with-store',
+  name: 'users-list-page',
   components: {
     Toolbar,
     SelectedSortsSelected,
@@ -53,7 +54,12 @@ export default {
   methods: {
     ...mapMutations({
       setSelectedNameEmail: 'inputsModule/setSelectedNameEmail',
-    })
+      setUser: 'usersModule/setUsers',
+      NEW_USER: 'usersModule/NEW_USER',
+    }),
+    // ...mapActions({
+    //   createUser: 'usersModule/createUser'
+    // }),
   },
   computed: {
     ...mapState({
@@ -62,9 +68,9 @@ export default {
       selectedNameEmail: state => state.inputsModule.selectedNameEmail,
       users: state => state.usersModule.users
     }),
-    ...mapGetters({
-      sortedAndSearchedUsers: 'inputsModule/sortedAndSearchedUsers',
-    }),
+    // ...mapGetters({
+    //   sortedAndSearchedUsers: 'inputsModule/sortedAndSearchedUsers',
+    // }),
   },
 }
 </script>
@@ -83,7 +89,6 @@ export default {
   position: relative;
   width: 97%;
   box-shadow: 0 12px 12px #0000001A;
-  padding: 0 30px;
 }
 .usersList__btn {
   position: absolute;

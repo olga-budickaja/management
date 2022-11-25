@@ -1,4 +1,3 @@
-import MyButtonDrop from "@/UI/MyButtonDrop";
 import MyDropdownButtons from "@/UI/MyDropdownButtons";
 import MyInputAddUser from "@/UI/MyInputAddUser";
 import MyLoader from "@/UI/MyLoader";
@@ -11,9 +10,18 @@ import SearchUsers from "@/components/sorts-search/SearchUsers";
 import SelectedNameEmail from "@/components/sorts-search/SelectedNameEmail";
 import SortsRoles from "@/components/sorts-search/SortsRoles";
 import SortsState from "@/components/sorts-search/SortsState";
+import MyButtonDisable from "@/UI/MyButtonDisable";
+import MyButtonEdit from "@/UI/MyButtonEdit";
+import MyButtonReset from "@/UI/MyButtonReset";
+import MyButtonRoles from "@/UI/MyButtonRoles";
+import MyButtonDelete from "@/UI/MyButtonDelete";
 
 export default [
-    MyButtonDrop,
+    MyButtonDelete,
+    MyButtonDisable,
+    MyButtonEdit,
+    MyButtonReset,
+    MyButtonRoles,
     MyDropdownButtons,
     MyInputAddUser,
     MyLoader,

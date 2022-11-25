@@ -8,11 +8,7 @@
               v-model="selectedItem"
               color="cyan"
           >
-            <MyButtonDrop
-                v-for="btn in btnDrops"
-                :btn="btn"
-                :key="btn.name"
-            />
+          <slot/>
           </v-list-item-group>
 
         </v-list-item-title>
@@ -22,18 +18,10 @@
 </template>
 
 <script>
-import MyButtonDrop from "@/UI/MyButtonDrop";
-import {mapState} from "vuex";
+
 
 export default {
   name: 'my-dropdown-buttons',
-  components: {MyButtonDrop},
-  prop: {
-    btnDrops: {
-      type: Array,
-      required: true,
-    },
-  },
   data: () => ({
     selectedItem: 0,
     show: false,
@@ -41,11 +29,6 @@ export default {
   }),
   methods: {
   },
-  computed: {
-    ...mapState({
-      btnDrops: state => state.buttonsModule.btnDrops
-    }),
-  }
 }
 </script>
 

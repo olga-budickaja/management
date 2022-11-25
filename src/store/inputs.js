@@ -27,9 +27,9 @@ export const inputsModule = {
           });
       },
       sortedAndSearchedUsers(state, getters) {
-          let arr = getters.sortedUsers
-          arr.splice(getters.sortedUsers.length -1)
-          return arr.filter(user => user.surname.toLowerCase().includes(state.searchQuery.toLowerCase()));
+          // let arr = getters.sortedUsers
+          // arr.splice(getters.sortedUsers.length -1)
+          return getters.sortedUsers.filter(user => user.surname.toLowerCase().includes(state.searchQuery.toLowerCase()));
       },
   },
   mutations: {
@@ -40,7 +40,7 @@ export const inputsModule = {
           state.selectedNameEmail = selectedNameEmail
       },
       setSelectedSelect(state, selectedSelect) {
-          state.selectedSelect= selectedSelect
+          state.selectedSelect = selectedSelect
       },
       setSelectedChecks(state, selectedChecks) {
           state.sortSelects = selectedChecks

@@ -2,6 +2,7 @@
   <v-text-field
       :v-model="modelValue"
       :label="label"
+      :value="modelValue"
       @input="updateInput"
       type="text"
       color="grey lighten-1"

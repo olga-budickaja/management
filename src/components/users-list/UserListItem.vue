@@ -71,7 +71,13 @@
           </v-flex>
 
           <v-flex md1 xs1 align-self-center end>
-            <MyDropdownButtons/>
+            <MyDropdownButtons>
+              <my-button-edit/>
+              <my-button-reset/>
+              <my-button-roles/>
+              <my-button-disable/>
+              <my-button-delete @click.native="removeUser"/>
+            </MyDropdownButtons>
           </v-flex>
 
         </v-layout>
@@ -84,8 +90,20 @@
 <script>
 import MyDropdownButtons from "@/UI/MyDropdownButtons";
 import {mapState} from "vuex";
+import MyButtonReset from "@/UI/MyButtonReset";
+import MyButtonEdit from "@/UI/MyButtonEdit";
+import MyButtonRoles from "@/UI/MyButtonRoles";
+import MyButtonDisable from "@/UI/MyButtonDisable";
+import MyButtonDelete from "@/UI/MyButtonDelete";
 export default {
-  components: {MyDropdownButtons},
+  components: {
+    MyDropdownButtons,
+    MyButtonReset,
+    MyButtonEdit,
+    MyButtonRoles,
+    MyButtonDisable,
+    MyButtonDelete
+  },
   props: {
     user: {
       type: Object,
@@ -98,6 +116,11 @@ export default {
       show: false,
       offset: true
     }
+  },
+  methods: {
+    removeUser() {
+      this.$emit('removeUser')
+    },
   },
   computed: {
     ...mapState({

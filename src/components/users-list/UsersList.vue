@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="users.length > 0">
-      <div class="usersList__title border mt-16">
+      <div class="usersList__title border mt-6">
         <v-layout grey--text row class="pb-2">
           <v-flex md11>
             <v-layout col12 row>
@@ -49,17 +49,13 @@ export default {
   components: {
     UserListItem
   },
-  prop: {
-    users: {
-      type: Array,
-      required: true,
-    }
-  },
   methods: {
     ...mapActions({
+      createUser: 'usersModule/createUser',
       removeUser: 'usersModule/removeUser',
     }),
     ...mapMutations({
+      NEW_USER: 'usersModule/NEW_USER',
       setUsers: 'usersModule/setUsers'
     }),
     removedUser(user) {
@@ -70,7 +66,7 @@ export default {
     ...mapState({
       users: state => state.usersModule.users
     }),
-  }
+  },
 }
 </script>
 

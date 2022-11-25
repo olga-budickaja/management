@@ -24,7 +24,7 @@ const routes = [
   },
   {
     path: '/users-list',
-    name: 'users-with-store',
+    name: 'users-list-page',
     meta: {layout: 'bars'},
     component: () => import('../views/UsersListPage.vue')
   },

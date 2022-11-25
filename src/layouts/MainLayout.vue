@@ -8,7 +8,7 @@
         <section class="content height">
           <v-layout col-12 row class="grey lighten-4">
             <v-flex md3 class="relative">
-              <MainUsersList class="height"/>
+              <MainUsersList class="height" :users="users"/>
               <router-link to="/users-list">
                 <v-btn
                     class="userList__btn"
@@ -38,6 +38,7 @@ import Navbar from "@/components/bars/Navbar";
 import Sidebar from "@/components/bars/Sidebar";
 import Toolbar from "@/components/bars/Toolbar";
 import MainUsersList from "@/components/main/MainUsersList";
+import {mapState} from "vuex";
 
 export default {
   name: 'main-layout',
@@ -46,6 +47,11 @@ export default {
     Navbar,
     Sidebar,
     Toolbar
+  },
+  computed: {
+    ...mapState({
+      users: state => state.usersModule.users
+    })
   }
 }
 </script>

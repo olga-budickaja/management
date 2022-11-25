@@ -1,3 +1,5 @@
+import User from "@/store/user_help";
+
 export const usersModule = {
     state: () => ({
         users: [
@@ -93,6 +95,12 @@ export const usersModule = {
         isLoading: false
     }),
     mutations: {
+        setIsLoading(state, isLoading) {
+            state.isLoading = isLoading
+        },
+        NEW_USER(state, payload) {
+            state.users.push(payload)
+        },
         setUsers(state, users) {
             state.users = users
         },
@@ -110,6 +118,31 @@ export const usersModule = {
     getters: {
     },
     actions: {
+        async createUser({state, commit}, payload) {
+            commit('setIsLoading', true);
+            try {
+                const newUser = new User(
+                    payload.surname,
+                    payload.firstname,
+                    payload.username,
+                    payload.email,
+                    payload.realm,
+                    payload.password,
+                    payload.date,
+                    payload.time,
+                    payload.id
+                )
+                commit('NEW_USER', {
+                    ...newUser,
+                })
+            } catch (e) {
+                console.log(e)
+                throw e
+            } finally {
+                commit('setIsLoading', false);
+            }
+
+        },
         async removeUser({commit}, user) {
             commit('REMOVE_USER', user.id);
         },

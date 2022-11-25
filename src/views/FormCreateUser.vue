@@ -9,8 +9,8 @@
         <v-flex md6 sm12 pl-4 pr-4 xs12>
           <my-input-add-user
               label="Surname"
-              v-model="surname"
-              :value="surname"
+              v-model="user.surname"
+              :value="user.surname"
               :input-rules="[inputRules.required, inputRules.name, inputRules.length]"
               hide-details="auto"
               aria-required="true"
@@ -20,8 +20,8 @@
         <v-flex md6 sm12 pl-4 pr-4 xs12>
           <my-input-add-user
               label="Firstname"
-              :value="firstname"
-              v-model="firstname"
+              :value="user.firstname"
+              v-model="user.firstname"
               :input-rules="[inputRules.required, inputRules.name, inputRules.length]"
               hide-details="auto"
               aria-required="true"
@@ -34,8 +34,8 @@
         <v-flex md6 sm12 pl-4 pr-4 xs12>
           <my-input-add-user
               label="Username"
-              v-model="username"
-              :value="username"
+              v-model="user.username"
+              :value="user.username"
               :input-rules="[inputRules.required, inputRules.length]"
               hide-details="auto"
               aria-required="true"
@@ -45,8 +45,8 @@
         <v-flex md6 sm12 pl-4 pr-4 xs12>
           <my-input-add-user
               label="Email address"
-              :value="email"
-              v-model="email"
+              :value="user.email"
+              v-model="user.email"
               hide-details="auto"
               :input-rules="[inputRules.required, inputRules.email]"
               aria-required="true"
@@ -58,9 +58,9 @@
       <v-layout row>
         <v-flex pl-4 pr-4 md12>
           <v-select
-              :items="items"
+              :items="user.items"
               label="Realm"
-              v-model="realm"
+              v-model="user.realm"
               outlined
               color="grey lighten-1"
               hide-details="auto"
@@ -77,8 +77,8 @@
           <my-input-add-user
               :append-icon="show ? icon[0] : icon[1]"
               label="Password"
-              :value="password"
-              v-model="password"
+              :value="user.password"
+              v-model="user.password"
               :type="show ? 'text' : 'password'"
               :input-rules="[inputRules.required, inputRules.password]"
               hide-details="auto"
@@ -89,8 +89,8 @@
           <my-input-add-user
               :append-icon="show ? icon[0] : icon[1]"
               label="Confirm Password"
-              v-model="confirmPassword"
-              :value="confirmPassword"
+              v-model="user.confirmPassword"
+              :value="user.confirmPassword"
               :type="show ? 'text' : 'password'"
               :input-rules="[inputRules.required, inputRules.confirmPassword]"
               hide-details="auto"
@@ -129,7 +129,7 @@
 
 <script>
 import MyInputAddUser from "@/UI/MyInputAddUser";
-import {mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 import MyLoader from "@/UI/MyLoader";
 import MyTooltip from "@/UI/MyTooltip";
 
@@ -144,19 +144,21 @@ export default {
 
   },
   data: () => ({
-    component: '',
-    value: '',
-    surname: '',
-    firstname: '',
-    username: '',
-    email: '',
-    date: '',
-    realm: null,
-    password: '',
-    confirmPassword: '',
-    items: [
-      'LBBW Immo'
-    ],
+    user: {
+      id: '',
+      value: '',
+      surname: '',
+      firstname: '',
+      username: '',
+      email: '',
+      date: '',
+      realm: null,
+      password: '',
+      confirmPassword: '',
+      items: [
+        'LBBW Immo'
+      ],
+    },
     show: false,
     error: false,
     icon: ['mdi-eye', 'mdi-eye-off'],
@@ -164,25 +166,32 @@ export default {
     prompt: false,
   }),
   methods: {
+    ...mapActions({
+      createUser: 'usersModule/createUser'
+    }),
+    ...mapMutations({
+      NEW_USER: 'usersModule/NEW_USER'
+    }),
     async handlerSubmit() {
       if (this.$refs.form.validate()) {
         try {
           const formData = {
-            surname: this.surname,
-            firstname: this.firstname,
-            username: this.username,
-            email: this.email,
-            realm: this.realm,
-            password: this.password,
+            surname: this.user.surname,
+            firstname: this.user.firstname,
+            username: this.user.username,
+            email: this.user.email,
+            realm: this.user.realm,
+            password: this.user.password,
             date: `${new Date().getDate()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
             time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+            id: Math.random(),
           }
-          // await this.$store.dispatch('userModule/createUser', formData);
 
+          await this.$store.dispatch('usersModule/createUser', formData);
+          this.$emit('create', formData)
           this.message = 'The user is registered. Add him roles'
           this.tooltipShow()
           this.routApplications()
-
         } catch (e) {
           this.message = 'This email is already registered'
           this.tooltipShow()
@@ -204,7 +213,8 @@ export default {
   computed: {
     ...mapState({
       isLoading: state => state.usersModule.isLoading,
-      inputRules: state => state.formModule.inputRules
+      inputRules: state => state.formModule.inputRules,
+      users: state => state.usersModule.users,
     }),
   }
 

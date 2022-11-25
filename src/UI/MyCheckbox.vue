@@ -95,7 +95,9 @@ export default {
       return this.checkModel.toString()
     }
   },
+  watch: {
 
+  }
 }
 </script>
 

@@ -1,5 +1,7 @@
 <template>
   <my-input
+      :v-model="surname"
+      :value="surname"
       :input.sync="searchQuery"
       @update:input="setSearchQuery"
       label="Search..."
@@ -9,19 +11,27 @@
 
 <script>
 import MyInput from "@/UI/MyInput";
-import { mapMutations, mapState } from "vuex";
+import {mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   name: 'search-user',
   components: {MyInput},
+  data: () => ({
+    surname: '',
+  }),
   methods: {
     ...mapMutations({
       setSearchQuery: 'inputsModule/setSearchQuery',
+      setUsers: 'usersModule/setUsers'
     }),
   },
   computed: {
     ...mapState({
       searchQuery: state => state.inputsModule.searchQuery,
+    }),
+    ...mapGetters({
+      sortedAndSearchedUsers: 'inputsModule/sortedAndSearchedUsers',
+      sortedUsers: 'inputsModule/sortedUsers'
     })
   }
 }
