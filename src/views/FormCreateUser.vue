@@ -167,10 +167,10 @@ export default {
   }),
   methods: {
     ...mapActions({
-      createUser: 'usersModule/createUser'
+      createUser: 'createUser'
     }),
     ...mapMutations({
-      NEW_USER: 'usersModule/NEW_USER'
+      NEW_USER: 'NEW_USER'
     }),
     async handlerSubmit() {
       if (this.$refs.form.validate()) {
@@ -187,8 +187,9 @@ export default {
             id: Math.random(),
           }
 
-          await this.$store.dispatch('usersModule/createUser', formData);
+          await this.$store.dispatch('createUser', formData);
           this.$emit('create', formData)
+          console.log(formData)
           this.message = 'The user is registered. Add him roles'
           this.tooltipShow()
           this.routApplications()
@@ -207,7 +208,7 @@ export default {
     routApplications() {
       setTimeout(() => {
         this.$router.push('/checkbox-create-user')
-      }, 3000)
+      }, 2700)
     },
   },
   computed: {

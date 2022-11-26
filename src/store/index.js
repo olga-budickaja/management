@@ -4,6 +4,7 @@ import {sidebarModule} from "@/store/sidebar";
 import {usersModule} from "@/store/users";
 import {formModule} from "@/store/forms";
 import {inputsModule} from "@/store/inputs";
+import {applicationsRoles} from "@/store/applications-roles";
 
 Vue.use(Vuex)
 
@@ -20,6 +21,7 @@ export const store = new Vuex.Store({
     sidebarModule,
     usersModule,
     formModule,
-    inputsModule
+    inputsModule,
+    applicationsRoles
   }
 })

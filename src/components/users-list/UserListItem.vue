@@ -51,21 +51,19 @@
                       wrap
                   >
                       <div
-                          v-for="role in roles"
-                          :key="role.id"
+                          v-for="app in applicationsUser"
+                          :key="app.id"
                       >
-                        <v-chip v-if="role.user === user.id" class="mr-3">
-                          {{ role.name }}
-                        </v-chip>
+                          <v-chip v-if="app.user === user.id" class="mr-3">
+                            {{ app.roles }}
+                          </v-chip>
                       </div>
-
                   </v-flex>
                   <v-flex md1 class="displayFlex">
                     <div class="mr-5">{{ user.date }}</div>
                     <div>{{ user.time }}</div>
                   </v-flex>
                 </v-layout>
-
               </v-flex>
             </v-layout>
           </v-flex>
@@ -124,7 +122,7 @@ export default {
   },
   computed: {
     ...mapState({
-      roles: state => state.usersModule.roles
+      applicationsUser: state => state.applicationsRoles.applicationsUser
     }),
   },
 }

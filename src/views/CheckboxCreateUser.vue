@@ -1,5 +1,5 @@
 <template>
-  <div class="checkSystems">
+  <div class="submitApp">
     <v-card flat ma-4>
       <v-card-title class="text-h6">Application, Systems and User Roles</v-card-title>
       <v-layout row col-12 >
@@ -27,7 +27,7 @@
               type="checkbox"
               :value="value.value"
               :items="value.roles"
-              :click.sync="some"
+              @click="some"
           >
           </MyCheckbox>
         </div>
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 import MyCheckbox from "@/UI/MyCheckbox";
 import MyLoader from "@/UI/MyLoader";
 import MyTooltip from "@/UI/MyTooltip";
@@ -83,13 +83,18 @@ export default {
     modelApp: false,
     checkedItem: false,
     label: String,
-    checkModels: false,
     checkItemModels: false,
+    checkModels: false,
+    active: false,
+    activeValue: 0,
     show: false,
+    role: '',
     message: '',
-    some: ''
   }),
   methods: {
+    ...mapActions({
+
+    }),
     async submitHandler() {
       if (!this.checkModels) {
         this.message = 'Choose at least one application'
@@ -99,12 +104,13 @@ export default {
         this.tooltipShow()
       }
       const appData = {
-        application: this.checkModels,
-        keyRole: this.keyRole,
+        application: this.checkModels.toString(),
+        roles: this.checkItemModels.toString(),
+        id: Math.random()
       }
-      console.log(appData)
       try {
-        // await this.$store.dispatch('updateApplication', appData)
+        await this.$store.dispatch('updateApplication', appData)
+        this.$emit('createApp', appData)
       } catch (e) {
         console.log(e)
       }
@@ -115,24 +121,20 @@ export default {
         this.show = false
       }, 2000)
     },
+    some() {
+        this.checkModels.length || (this.checkItemModels.length > 0)
+            ? this.applications.active = true
+            : this.applications.active = false
+    },
   },
   computed: {
     ...mapState({
-      applications: state => state.formModule.applications,
-      roles: state => state.formModule.roles,
+      applications: state => state.applicationsRoles.applications,
+      roles: state => state.applicationsRoles.roles,
       isLoading: state => state.usersModule.isLoading
     }),
   },
   watch: {
-    some(value) {
-      if (!this.checkItemModels) {
-        value = null
-        this.checkModels = !this.checkModels
-      } else {
-        this.checkModels = []
-      }
-      console.log(value)
-    }
   }
 }
 </script>

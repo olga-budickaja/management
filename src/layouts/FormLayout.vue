@@ -27,7 +27,7 @@
                     </v-responsive>
                   </v-card>
                   <v-responsive class="pa-4 mt-5 pb-16 userList__component">
-                    <router-view :users="users" @create="createUser"/>
+                    <router-view :users="users" :applicationsUser="applicationsUser" @createApp="createApp"/>
                   </v-responsive>
                 </div>
               </v-card>
@@ -43,7 +43,7 @@ import ToolbarCreateUser from "@/components/bars/ToolbarCreateUser";
 import Navbar from "@/components/bars/Navbar";
 import Sidebar from "@/components/bars/Sidebar";
 import MyTooltip from "@/UI/MyTooltip";
-import {mapMutations, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 
 export default {
   name: 'form-layout',
@@ -59,17 +59,26 @@ export default {
   },
   methods: {
     ...mapMutations({
-      NEW_USER: 'usersModule/NEW_USER',
-      setUsers: 'usersModule/setUsers'
+      NEW_USER: 'NEW_USER',
+      setUsers: 'setUsers',
+      setApplicationsUser: 'setApplicationsUser',
+      NEW_APPLICATION: 'NEW_APPLICATION'
+    }),
+    ...mapActions({
+      updateApplication: 'updateApplication'
     }),
     createUser(user) {
        user = this.users
+    },
+    createApp(app) {
+      app = this.updateApplication
     }
   },
   computed: {
     ...mapState({
-      users: state => state.usersModule.users
-    })
+      users: state => state.usersModule.users,
+      applicationsUser: state => state.applicationsRoles.applicationsUser
+    }),
   }
 
 

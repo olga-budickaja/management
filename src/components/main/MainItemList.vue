@@ -27,15 +27,16 @@
             {{ `${user.surname}, ${user.firstname}` }}
           </v-card-title>
           <span
-              v-for="role in roles"
-              :key="role.id"
+              v-for="app in applicationsUser"
+              :key="app.id"
               class="grey--text"
           >
-            <template v-if="role.user === user.id">
-              {{ role.name }}
+            <template v-if="app.user === user.id">
+              {{ app.roles }}
             </template>
           </span>
         </v-flex>
+
         <v-flex xl3 md3 sm3 class="align-self-center">
           <MyDropdownButtons>
             <my-button-edit/>
@@ -87,7 +88,7 @@ export default {
   },
   computed: {
     ...mapState({
-      roles: state => state.usersModule.roles,
+      applicationsUser: state => state.applicationsRoles.applicationsUser
     }),
   },
 }

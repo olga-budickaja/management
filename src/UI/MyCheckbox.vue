@@ -26,7 +26,7 @@
               class="mt-1 pt-0"
               color="cyan"
               @change="itemsCheck"
-              @click="check($event)"
+              @click="check"
           >
             <template v-slot:label>
               <div class="d-flex align-center">
@@ -81,13 +81,13 @@ export default {
     itemsCheck(event) {
       this.$emit('update:itemChecked', event)
     },
-    check(event) {
-      this.$emit('update:click', event)
+    check(value) {
+      this.$emit('click', value)
     },
   },
   computed: {
     ...mapState({
-      roles: state => state.formModule.roles
+      roles: state => state.applicationsRoles.roles
     }),
     ...mapGetters({
     }),

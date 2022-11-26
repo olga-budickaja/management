@@ -54,8 +54,10 @@ export default {
   methods: {
     ...mapMutations({
       setSelectedNameEmail: 'inputsModule/setSelectedNameEmail',
-      setUser: 'usersModule/setUsers',
-      NEW_USER: 'usersModule/NEW_USER',
+      setUser: 'setUsers',
+      NEW_USER: 'NEW_USER',
+      setApplicationUser: 'setApplicationUser',
+      NEW_APPLICATION: 'NEW_APPLICATION',
     }),
     // ...mapActions({
     //   createUser: 'usersModule/createUser'
@@ -66,7 +68,8 @@ export default {
       // searchQuery: state => state.userModule.searchQuery,
       isLoading: state => state.usersModule.isLoading,
       selectedNameEmail: state => state.inputsModule.selectedNameEmail,
-      users: state => state.usersModule.users
+      users: state => state.usersModule.users,
+      applicationsUser: state => state.applicationsRoles.applicationsUser
     }),
     // ...mapGetters({
     //   sortedAndSearchedUsers: 'inputsModule/sortedAndSearchedUsers',

@@ -40,58 +40,7 @@ export const usersModule = {
                 username: 'eder',
             },
         ],
-        applications: [
-            {
-                id: 'VJBJBRKVB',
-                app: 'KJGSREJGAB',
-                name: '.CARD',
-            },
-            {
-                id: 'HTHTJJY',
-                app: 'KJGSREJGAB',
-                name: '.EXTERNAL',
-            },
-            {
-                id: 'JAWHRAGH',
-                app: 'RJBGTBST',
-                name: '.CARD',
-            },
-            {
-                id: 'FD.KNDFK',
-                app: 'RJBGTBST',
-                name: '#DigitaldentityManagement',
-            },
-            {
-                id: 'BJLDGSBGL',
-                app: 'HDSHGGESN/LK',
-                name: '.VISIT',
-            },
-            {
-                id: 'JBGJSGGB.',
-                app: 'FKNGZKNFKN',
-                name: '.ACCESS',
-            },
-            {
-                id: 'JBZGSJBFJZ',
-                app: 'FKNGZKNFKN',
-                name: '#DigitaldentityManagement',
-            },
-            {
-                id: 'GSGHTHNHMIL',
-                app: 'FKNGZKNFKN',
-                name: '.EXTERNAL',
-            },
-        ],
-        roles: [
-            {id: 'NLKGNZFKN', rol: 'VJBJBRKVB', user: 'KJGSREJGAB', name: 'Card Management'},
-            {id: 'KNTHNLSK', rol: 'HTHTJJY', user: 'KJGSREJGAB', name: 'Onboard Manager'},
-            {id: 'ZKLGRZK', rol: 'JAWHRAGH', user: 'RJBGTBST', name: 'Card Management'},
-            {id: 'G/GERHHI', rol: 'FD.KNDFK', user: 'RJBGTBST', name: 'DIM Manager'},
-            {id: 'BJJGBD', rol: 'BJLDGSBGL', user: 'HDSHGGESN/LK', name: 'Facility Management'},
-            {id: 'HJJRYJDRY', rol: 'JBGJSGGB.', user: 'FKNGZKNFKN', name: 'Access Manager'},
-            {id: 'HDJHDJKJJNHBFD', rol: 'JBZGSJBFJZ', user: 'FKNGZKNFKN', name: 'DIM Manager'},
-            {id: 'DHGHYMK.L', rol: 'GSGHTHNHMIL', user: 'FKNGZKNFKN', name: 'External Manager'},
-        ],
+        user: [],
         isLoading: false
     }),
     mutations: {
@@ -101,14 +50,14 @@ export const usersModule = {
         NEW_USER(state, payload) {
             state.users.push(payload)
         },
+        USER_ID(state, payload) {
+            state.user.push(payload)
+        },
         setUsers(state, users) {
             state.users = users
         },
-        setApplications(state, applications) {
-            state.applications = applications
-        },
-        setRoles(state, roles) {
-            state.roles = roles
+        setUser(state, user) {
+            state.user = user
         },
         REMOVE_USER(state, userId) {
             let users = state.users.filter(u => u.id !== userId);
@@ -116,6 +65,9 @@ export const usersModule = {
         },
     },
     getters: {
+        user(state) {
+            return state.user
+        }
     },
     actions: {
         async createUser({state, commit}, payload) {
@@ -132,6 +84,8 @@ export const usersModule = {
                     payload.time,
                     payload.id
                 )
+                const user = payload.id
+                commit('USER_ID', user)
                 commit('NEW_USER', {
                     ...newUser,
                 })
@@ -147,5 +101,5 @@ export const usersModule = {
             commit('REMOVE_USER', user.id);
         },
     },
-    namespaced: true
+    namespaced: false
 }

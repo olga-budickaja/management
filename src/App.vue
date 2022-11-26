@@ -2,7 +2,10 @@
   <v-app>
     <v-main>
       <component :is="layout">
-        <router-view @create="createUser"/>
+        <router-view
+            @create="createUser"
+            @createApp="updateApplication"
+        />
       </component>
     </v-main>
   </v-app>
@@ -12,7 +15,7 @@
 import MainLayout from "@/layouts/MainLayout";
 import FormLayout from "@/layouts/FormLayout";
 import BarsLayout from "@/layouts/BarsLayout";
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: 'App',
@@ -26,13 +29,20 @@ export default {
   }),
   methods: {
     ...mapActions({
-      createUser: 'usersModule/createUser'
+      createUser: 'createUser',
+      updateApplication: 'updateApplication',
     }),
     createUser(user) {
       user = this.users
+    },
+    updateApplication(app) {
+      app = this.applicationsUser
     }
   },
   computed: {
+    ...mapState({
+      applicationsUser: state => state.applicationsRoles.applicationsUser
+    }),
     layout() {
       return (this.$route.meta.layout || 'main') + '-layout'
     }

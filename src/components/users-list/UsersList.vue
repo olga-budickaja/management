@@ -51,12 +51,15 @@ export default {
   },
   methods: {
     ...mapActions({
-      createUser: 'usersModule/createUser',
-      removeUser: 'usersModule/removeUser',
+      createUser: 'createUser',
+      createApp: 'updateApplication',
+      removeUser: 'removeUser',
     }),
     ...mapMutations({
-      NEW_USER: 'usersModule/NEW_USER',
-      setUsers: 'usersModule/setUsers'
+      NEW_USER: 'NEW_USER',
+      setUsers: 'setUsers',
+      NEW_APPLICATION: 'NEW_APPLICATION',
+      setApplicationsUser: 'setApplicationsUser'
     }),
     removedUser(user) {
       this.removeUser(user)
@@ -64,7 +67,7 @@ export default {
   },
   computed: {
     ...mapState({
-      users: state => state.usersModule.users
+      users: state => state.usersModule.users,
     }),
   },
 }

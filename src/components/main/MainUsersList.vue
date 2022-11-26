@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      removeUser: 'usersModule/removeUser',
+      removeUser: 'removeUser',
     }),
     removedUser(user) {
       this.removeUser(user)
