@@ -2,8 +2,9 @@
   <v-menu
       v-model="menu"
       :close-on-content-click="false"
-      :nudge-width="20"
+      :nudge-width="200"
       offset-x
+      class="text-right"
   >
     <template v-slot:activator="{ on, attrs }">
       <v-icon

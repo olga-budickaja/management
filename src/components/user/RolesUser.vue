@@ -34,8 +34,11 @@
             <v-flex md7>
               <v-card-text  align-self-center class="pa-0">{{ app.application }}</v-card-text>
             </v-flex>
-            <v-flex md1>
-              <v-icon class="ml-16 usersList__btnDrop">mdi-dots-vertical</v-icon>
+            <v-flex md1 class="text-right">
+                <MyDropdownButtons>
+                  <v-icon class="mr-8">mdi-account-minus-outline</v-icon>
+                  <span class="black--text">Revoke user role</span>
+                </MyDropdownButtons>
             </v-flex>
           </v-row>
         </v-layout>
@@ -46,9 +49,11 @@
 
 <script>
 import {mapGetters} from "vuex";
+import MyDropdownButtons from "@/UI/MyDropdownButtons";
 
 export default {
   name: 'role-user',
+  components: {MyDropdownButtons},
   props: {
     user: {
       type: Object,

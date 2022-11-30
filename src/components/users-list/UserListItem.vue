@@ -58,7 +58,7 @@
             </v-layout>
           </v-flex>
 
-          <v-flex md1 xs1 align-self-center end>
+          <v-flex md1 xs1 align-self-center text-right>
             <MyDropdownButtons>
               <my-button-edit/>
               <my-button-reset/>
