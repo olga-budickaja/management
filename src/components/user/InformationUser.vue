@@ -10,7 +10,7 @@
             <v-card-text class="grey--text pa-0">Name</v-card-text>
             <v-card-title class="text-h5 pa-0">{{ `${user.surname} ${user.firstname}` }}</v-card-title>
           </v-flex>
-          <v-flex md2>
+          <v-flex md3>
             <v-layout col-12 class="pa-0">
               <v-flex md11 class="text-right">
                 <v-chip color="cyan" small text-color="white">
@@ -18,7 +18,7 @@
                   {{ text }}
                 </v-chip>
               </v-flex>
-              <v-flex  md1>
+              <v-flex  md1 class="ml-5">
                 <MyDropdownButtons>
                   <my-button-edit/>
                   <my-button-reset/>
