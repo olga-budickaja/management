@@ -1,7 +1,7 @@
 <template>
     <v-app>
       <Navbar/>
-      <div class="displayFlex">
+      <div class="d-flex">
         <Sidebar/>
         <v-responsive>
           <ToolbarCreateUser/>

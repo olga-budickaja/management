@@ -2,7 +2,7 @@
   <div>
     <div v-if="users.length > 0">
       <div class="usersList__title border mt-6">
-        <v-layout grey--text row class="pb-2">
+        <v-layout grey--text row class="pb-5 pt-10 pl-8">
           <v-flex md11>
             <v-layout col12 row>
               <v-flex md4 sm8 xs12>
@@ -11,7 +11,7 @@
                   <v-flex md10>
                     <v-layout col12 row>
                       <v-flex xl6 md4 class="align-self-center">Name</v-flex>
-                      <v-flex xl6 md9 class="align-self-center">Email</v-flex>
+                      <v-flex xl6 md8 class="align-self-center">Email</v-flex>
                     </v-layout>
                   </v-flex>
 
@@ -19,8 +19,8 @@
               </v-flex>
               <v-flex md6 sm3 xs12>
                 <v-layout col12 row wrap>
-                  <v-flex md11 class="align-self-center">Roles</v-flex>
-                  <v-flex md1 class="align-self-center">Created</v-flex>
+                  <v-flex xl11 md10 class="align-self-center">Roles</v-flex>
+                  <v-flex xl1 md2 class="align-self-center text-left">Created</v-flex>
                 </v-layout>
               </v-flex>
             </v-layout>
@@ -33,7 +33,7 @@
             v-for="user in users"
             :user="user"
             :key="user.id"
-            @removeUser="removedUser(user)"
+            @removeUser="removedUser"
         />
       </transition-group>
     </div>
@@ -43,33 +43,48 @@
 
 <script>
 import UserListItem from "@/components/users-list/UserListItem";
-import {mapActions, mapMutations, mapState} from "vuex";
+import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   components: {
     UserListItem
+  },
+  props: {
+    users: {
+      type: Array,
+      required: true,
+    },
   },
   methods: {
     ...mapActions({
       createUser: 'createUser',
       createApp: 'updateApplication',
       removeUser: 'removeUser',
+      // getUsersFromApi: 'getUsersFromApi'
     }),
     ...mapMutations({
       NEW_USER: 'NEW_USER',
       setUsers: 'setUsers',
       NEW_APPLICATION: 'NEW_APPLICATION',
-      setApplicationsUser: 'setApplicationsUser'
+      setApplicationsUser: 'setApplicationsUser',
+      setSearchQuery: 'setSearchQuery'
     }),
     removedUser(user) {
       this.removeUser(user)
-    },
+    }
   },
   computed: {
     ...mapState({
-      users: state => state.usersModule.users,
+
     }),
+    ...mapGetters({
+      applicationsUser: 'applicationsUser',
+      // users: 'users'
+    })
   },
+  // mounted() {
+  //   this.getUsersFromApi()
+  // }
 }
 </script>
 

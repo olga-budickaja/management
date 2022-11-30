@@ -1,4 +1,5 @@
 import User from "@/store/user_help";
+// import axios from "axios";
 
 export const usersModule = {
     state: () => ({
@@ -22,7 +23,7 @@ export const usersModule = {
                 username: 'bader',
             },
             {
-                id: 'HDSHGGESN/LK',
+                id: 'HDSHGGESN',
                 surname: 'Dozer',
                 firstname: 'Nadja',
                 email: 'nadja.dozer@company.de',
@@ -41,8 +42,17 @@ export const usersModule = {
             },
         ],
         user: [],
-        isLoading: false
+        isLoading: false,
+        status: 'active'
     }),
+    getters: {
+        users(state) {
+            return state.users
+        },
+        user(state) {
+            return state.user
+        },
+    },
     mutations: {
         setIsLoading(state, isLoading) {
             state.isLoading = isLoading
@@ -53,21 +63,22 @@ export const usersModule = {
         USER_ID(state, payload) {
             state.user.push(payload)
         },
-        setUsers(state, users) {
+        setUsers: (state, users) => {
             state.users = users
         },
         setUser(state, user) {
             state.user = user
         },
+        setStatus(state, status) {
+            state.status = status
+        },
         REMOVE_USER(state, userId) {
-            let users = state.users.filter(u => u.id !== userId);
+            let users = users.filter(u => u.id !== userId)
             state.users = users;
         },
-    },
-    getters: {
-        user(state) {
-            return state.user
-        }
+        STATUS_USER(state, getter) {
+            getter.user.push(state.status)
+        },
     },
     actions: {
         async createUser({state, commit}, payload) {
@@ -97,9 +108,25 @@ export const usersModule = {
             }
 
         },
+        // getUsersFromApi({commit}) {
+        //     return axios('http://rdp.nks.com.ua:55002', {
+        //         method: 'GET'
+        //     })
+        //         .then((users) => {
+        //             commit('setUsers', users);
+        //             return users;
+        //         })
+        //         .catch((error) => {
+        //             console.log(error)
+        //             return error;
+        //         })
+        // },
         async removeUser({commit}, user) {
             commit('REMOVE_USER', user.id);
         },
+        async statusUser({commit}) {
+            commit('STATUS_USER')
+        }
     },
     namespaced: false
 }

@@ -60,13 +60,12 @@ export default {
     ...mapState({
       itemsSideBar: state => state.sidebarModule.itemsSideBar
     }),
-
     btnText: function () {
       if(this.show) {
         return 'mdi-chevron-left'
       }
       return 'mdi-chevron-right'
-    }
+    },
   }
 }
 </script>

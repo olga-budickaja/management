@@ -20,34 +20,34 @@ export const inputsModule = {
       selectedChecks: 'Roles',
       sortedChecks: ['Role1', 'Role2', 'Role3', 'Role4'],
   }),
-  getters: {
-      sortedUsers(state) {
-          return [...state.users].sort((user1, user2) => {
-              return user1[state.selectedNameEmail.value]?.localeCompare(user2[state.selectedNameEmail.value]);
-          });
+    getters: {
+        sortedUsers(state, getters) {
+            return [...getters.users].sort((user1, user2) => {
+                return user1[state.selectedNameEmail.value]?.localeCompare(user2[state.selectedNameEmail.value]);
+            });
+        },
+        sortedAndSearchedUsers(state, getters) {
+            return getters.sortedUsers.filter(user => user.surname.toLowerCase().includes(state.searchQuery.toLowerCase()));
+        },
+    },
+      mutations: {
+          setSearchQuery(state, searchQuery) {
+              state.searchQuery = searchQuery;
+          },
+          setSelectedNameEmail(state, selectedNameEmail) {
+              state.selectedNameEmail = selectedNameEmail
+          },
+          setSelectedSelect(state, selectedSelect) {
+              state.selectedSelect = selectedSelect
+          },
+          setSelectedChecks(state, selectedChecks) {
+              state.sortSelects = selectedChecks
+          },
+          setSortsSortsState(state, sortSortsState) {
+              state.sortSortsState = sortSortsState
+          }
       },
-      sortedAndSearchedUsers(state, getters) {
-          // let arr = getters.sortedUsers
-          // arr.splice(getters.sortedUsers.length -1)
-          return getters.sortedUsers.filter(user => user.surname.toLowerCase().includes(state.searchQuery.toLowerCase()));
-      },
-  },
-  mutations: {
-      setSearchQuery(state, searchQuery) {
-          state.searchQuery = searchQuery;
-      },
-      setSelectedNameEmail(state, selectedNameEmail) {
-          state.selectedNameEmail = selectedNameEmail
-      },
-      setSelectedSelect(state, selectedSelect) {
-          state.selectedSelect = selectedSelect
-      },
-      setSelectedChecks(state, selectedChecks) {
-          state.sortSelects = selectedChecks
-      },
-      setSortsSortsState(state, sortSortsState) {
-          state.sortSortsState = sortSortsState
-      }
-  },
-    namespaced: true
+    actions: {
+    },
+    namespaced: false
 }

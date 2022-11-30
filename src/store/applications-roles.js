@@ -33,10 +33,11 @@ export const applicationsRoles = {
             { value: 'DIM-Management', parent: '#Digitalldentity Management' },
         ],
         applicationsUser: [
-            {application: '.CARD', roles: 'Card Management, Onboard Manager', user: 'KJGSREJGAB'},
+            {application: '.CARD', roles: 'Card Management', user: 'KJGSREJGAB'},
+            {application: '.CARD', roles: 'Onboard Manager', user: 'KJGSREJGAB'},
             {application: '.CARD', roles: 'Card Management', user: 'RJBGTBST'},
             {application: '#DigitaldentityManagement', roles: 'DIM Manager', user: 'RJBGTBST'},
-            {application: '.VISIT', roles: 'Facility Management', user: 'HDSHGGESN/LK'},
+            {application: '.VISIT', roles: 'Facility Management', user: 'HDSHGGESN'},
             {application: '.ACCESS', roles: 'Access Manager', user: 'FKNGZKNFKN'},
             {application: '#DigitaldentityManagement', roles: 'DIM Manager', user: 'FKNGZKNFKN'},
             {application: '.EXTERNAL', roles: 'External Manager', user: 'FKNGZKNFKN'},
@@ -44,6 +45,9 @@ export const applicationsRoles = {
         applicationUser: [],
     }),
     getters: {
+        applicationsUser(state) {
+            return state.applicationsUser
+        },
         applicationUser(state) {
             return state.applicationUser
         }

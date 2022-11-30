@@ -2,7 +2,7 @@
   <div class="submitApp">
     <v-card flat ma-4>
       <v-card-title class="text-h6">Application, Systems and User Roles</v-card-title>
-      <v-layout row col-12 >
+      <v-layout row col-12>
         <v-flex md6 sm6 xs6 class="text-left">
           <v-card-text class="text-md-body-6">Select the application, systems and User Roles for which the user should be authorized.</v-card-text>
 
@@ -71,7 +71,6 @@ import {mapActions, mapState} from "vuex";
 import MyCheckbox from "@/UI/MyCheckbox";
 import MyLoader from "@/UI/MyLoader";
 import MyTooltip from "@/UI/MyTooltip";
-
 export default {
   name: 'checkbox-create-user',
   components: {
@@ -93,7 +92,6 @@ export default {
   }),
   methods: {
     ...mapActions({
-
     }),
     async submitHandler() {
       if (!this.checkModels) {
@@ -122,9 +120,9 @@ export default {
       }, 2000)
     },
     some() {
-        this.checkModels.length || (this.checkItemModels.length > 0)
-            ? this.applications.active = true
-            : this.applications.active = false
+      this.checkModels.length || (this.checkItemModels.length > 0)
+          ? this.applications.active = true
+          : this.applications.active = false
     },
   },
   computed: {

@@ -56,7 +56,7 @@
       </v-layout>
 
       <v-layout row>
-        <v-flex pl-4 pr-4 md12>
+        <v-flex pl-7 pr-13 md12>
           <v-select
               :items="user.items"
               label="Realm"
@@ -139,9 +139,6 @@ export default {
     MyLoader,
     MyInputAddUser,
     MyTooltip
-  },
-  prop: {
-
   },
   data: () => ({
     user: {

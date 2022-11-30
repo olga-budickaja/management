@@ -1,8 +1,7 @@
 <template>
   <my-input
-      :v-model="surname"
       :value="surname"
-      :input.sync="searchQuery"
+      :input.sync="$store.state.inputsModule.searchQuery"
       @update:input="setSearchQuery"
       label="Search..."
       class="mt-5"
@@ -11,7 +10,7 @@
 
 <script>
 import MyInput from "@/UI/MyInput";
-import {mapGetters, mapMutations, mapState} from "vuex";
+import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   name: 'search-user',
@@ -20,18 +19,22 @@ export default {
     surname: '',
   }),
   methods: {
+    ...mapActions({
+      searchedQuery: 'searchedQuery'
+    }),
     ...mapMutations({
-      setSearchQuery: 'inputsModule/setSearchQuery',
-      setUsers: 'usersModule/setUsers'
+      setSearchQuery: 'setSearchQuery',
+      setUsers: 'setUsers'
     }),
   },
   computed: {
     ...mapState({
-      searchQuery: state => state.inputsModule.searchQuery,
+      // searchQuery: state => state.inputsModule.searchQuery,
     }),
     ...mapGetters({
-      sortedAndSearchedUsers: 'inputsModule/sortedAndSearchedUsers',
-      sortedUsers: 'inputsModule/sortedUsers'
+      sortedAndSearchedUsers: 'sortedAndSearchedUsers',
+      sortedUsers: 'sortedUsers',
+      searchQuery: 'searchQuery'
     })
   }
 }

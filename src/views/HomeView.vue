@@ -5,7 +5,7 @@
       <img class="main-icon" src="../assets/icons/main-icon.svg" alt="Create User">
       <h1 class="text-h4 ml-16 text-center">Add a new user.</h1>
       <router-link to="/form-create-user">
-        <v-btn color="cyan" class="white--text pl-16 pr-16 mt-16 ml-16">
+        <v-btn color="cyan" class="white--text pl-xl-16 pr-xl-16 pl-md-16 pr-md-16 mt-16 ml-16 pl-sm-3 pl-xs-3 pr-xs-3 pr-sm-3">
           <v-icon left dark>mdi-account-plus-outline</v-icon>
           Create User
         </v-btn>
@@ -17,15 +17,11 @@
 </template>
 
 <script>
-
-
-  export default {
-    name: 'home',
-
-    components: {
-
-    },
-  }
+export default {
+  name: 'home',
+  components: {
+  },
+}
 </script>
 
 <style>

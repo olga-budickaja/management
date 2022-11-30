@@ -8,7 +8,7 @@
           v-for="user in users"
           :user="user"
           :key="user.id"
-          @removeUser="removedUser(user)"
+          @remove="removedUser(user)"
       />
     </v-flex>
   </v-layout>
@@ -38,11 +38,6 @@ export default {
       this.removeUser(user)
     },
   }
-  // computed: {
-  //   ...mapState({
-  //     users: state => state.usersModule.users,
-  //   }),
-  // }
 }
 </script>
 

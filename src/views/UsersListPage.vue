@@ -15,9 +15,9 @@
         </v-icon>
       </v-btn>
 
-      <SelectedSortsSelected class="pt-5"/>
+      <SelectedSortsSelected  class="pa-10 pl-8 pb-0"/>
       <UsersList
-          :users="users"
+          :users="sortedAndSearchedUsers"
           v-if="!isLoading"
       />
 
@@ -37,7 +37,7 @@
 import Toolbar from "@/components/bars/Toolbar";
 import SelectedSortsSelected from "@/components/sorts-search/SelectedSortsSelected";
 import UsersList from "@/components/users-list/UsersList";
-import {mapMutations, mapState} from "vuex";
+import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   name: 'users-list-page',
@@ -53,27 +53,35 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setSelectedNameEmail: 'inputsModule/setSelectedNameEmail',
+      setSelectedNameEmail: 'setSelectedNameEmail',
+      setSearchQuery: 'setSearchQuery',
       setUser: 'setUsers',
       NEW_USER: 'NEW_USER',
       setApplicationUser: 'setApplicationUser',
       NEW_APPLICATION: 'NEW_APPLICATION',
+      setStatus: 'setStatus',
+      STATUS_USER: 'STATUS_USER',
     }),
-    // ...mapActions({
-    //   createUser: 'usersModule/createUser'
-    // }),
+    ...mapActions({
+      statusUser: 'statusUser',
+      removeUser: 'removeUser',
+      // getUsersFromApi: 'getUsersFromApi'
+    }),
   },
   computed: {
     ...mapState({
-      // searchQuery: state => state.userModule.searchQuery,
       isLoading: state => state.usersModule.isLoading,
       selectedNameEmail: state => state.inputsModule.selectedNameEmail,
-      users: state => state.usersModule.users,
-      applicationsUser: state => state.applicationsRoles.applicationsUser
+      sortSelects: state => state.inputsModule.sortSelects,
+      searchQuery: state => state.searchQuery,
+      status: state => state.status
     }),
-    // ...mapGetters({
-    //   sortedAndSearchedUsers: 'inputsModule/sortedAndSearchedUsers',
-    // }),
+    ...mapGetters({
+      users: 'users',
+      applicationsUser: 'applicationsUser',
+      sortedUsers: 'sortedUsers',
+      sortedAndSearchedUsers: 'sortedAndSearchedUsers',
+    }),
   },
 }
 </script>

@@ -1,14 +1,14 @@
 <template>
-  <v-app class="main">
+  <section class="main">
     <Navbar/>
-    <div class="displayFlex">
+    <div class="d-flex">
       <Sidebar/>
       <v-responsive>
         <Toolbar/>
-        <section class="content height">
-          <v-layout col-12 row class="grey lighten-4">
-            <v-flex md3 class="relative">
-              <MainUsersList class="height" :users="users"/>
+        <div class="content height">
+          <v-layout col-12 row class="grey relative lighten-4">
+            <v-flex md3 class="relative hidden-sm-and-down">
+              <MainUsersList class="height " :users="sortedAndSearchedUsers"/>
               <router-link to="/users-list">
                 <v-btn
                     class="userList__btn"
@@ -23,14 +23,25 @@
                 </v-btn>
               </router-link>
             </v-flex>
+            <v-flex md3 class="relative hidden-sm-and-up ml-5">
+              <router-link to="/users-list">
+                <v-btn rounded color="white" class="cyan--text">
+                  Users List
+                  <v-icon color="cyan" class="text-h5">
+                    mdi-chevron-right
+                  </v-icon>
+                </v-btn>
+              </router-link>
+
+            </v-flex>
             <v-flex md9>
               <router-view/>
             </v-flex>
           </v-layout>
-        </section>
+        </div>
       </v-responsive>
     </div>
-  </v-app>
+  </section>
 </template>
 
 <script>
@@ -38,7 +49,7 @@ import Navbar from "@/components/bars/Navbar";
 import Sidebar from "@/components/bars/Sidebar";
 import Toolbar from "@/components/bars/Toolbar";
 import MainUsersList from "@/components/main/MainUsersList";
-import {mapState} from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'main-layout',
@@ -49,18 +60,25 @@ export default {
     Toolbar
   },
   computed: {
-    ...mapState({
-      users: state => state.usersModule.users
+    ...mapGetters({
+      users: "users",
+      sortedUsers: 'sortedUsers',
+      sortedAndSearchedUsers: 'sortedAndSearchedUsers'
     })
-  }
+  },
+
 }
 </script>
 
 <style scoped>
+.content {
+  margin-top: 13px;
+}
 .userList__btn {
   position: absolute;
   top: 30px;
   right: -20px;
   z-index: 10;
 }
+
 </style>

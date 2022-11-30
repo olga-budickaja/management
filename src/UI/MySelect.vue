@@ -6,7 +6,7 @@
   >
     <div class="mySelectWrapper">
       <div ref="titleSelected" class="titleSelected">
-                  <span>
+          <span>
             <v-icon
                 class="text-h5 iconSelect"
                 left

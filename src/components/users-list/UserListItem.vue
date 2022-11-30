@@ -8,17 +8,8 @@
               <v-flex md4 sm12 xs12>
                 <v-layout class="pointer">
                   <v-flex xl2 md3 sm3 class="d-flex align-self-center">
-                    <v-avatar
-                        color="cyan lighten-5"
-                        size="48"
-                        class="mr-3"
-                        @click="$router.push(`/users/${user.id}`)"
-                    >
-                <span class="blue--text text-h5 text-uppercase font-weight-bold">
-                  {{ user.surname[0] + user.firstname[0] }}
-                </span>
-                    </v-avatar>
-                    <div class="d-flex align-self-center" :class="`${user.status}`">
+                    <MyAvatar :user="user" size="48" />
+                    <div class="d-flex align-self-center" :class="`${status}`">
                       <v-icon
                           small
                           class="mr-3 icon-color"
@@ -31,7 +22,7 @@
                     <v-layout
                         wrap
                         class="usersListItemInitials__description"
-                        v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"
+                        :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"
                         @click="$router.push(`/users/${user.id}`)"
                     >
                       <v-flex xl6 sm12 md12 xs12  class="text-h6 align-self-center text-left">
@@ -50,16 +41,15 @@
                       md11
                       wrap
                   >
-                      <div
+                      <ApplicationsUserChip
                           v-for="app in applicationsUser"
                           :key="app.id"
-                      >
-                          <v-chip v-if="app.user === user.id" class="mr-3">
-                            {{ app.roles }}
-                          </v-chip>
-                      </div>
+                          :app="app"
+                          :userId="user.id"
+                          class="mt-sm-3 mb-sm-3"
+                      />
                   </v-flex>
-                  <v-flex md1 class="displayFlex">
+                  <v-flex md1 class="d-flex">
                     <div class="mr-5">{{ user.date }}</div>
                     <div>{{ user.time }}</div>
                   </v-flex>
@@ -73,7 +63,7 @@
               <my-button-edit/>
               <my-button-reset/>
               <my-button-roles/>
-              <my-button-disable/>
+              <my-button-disable @click.native="changeStatus"/>
               <my-button-delete @click.native="removeUser"/>
             </MyDropdownButtons>
           </v-flex>
@@ -87,20 +77,24 @@
 
 <script>
 import MyDropdownButtons from "@/UI/MyDropdownButtons";
-import {mapState} from "vuex";
+import {mapActions, mapGetters, mapState} from "vuex";
 import MyButtonReset from "@/UI/MyButtonReset";
 import MyButtonEdit from "@/UI/MyButtonEdit";
 import MyButtonRoles from "@/UI/MyButtonRoles";
 import MyButtonDisable from "@/UI/MyButtonDisable";
 import MyButtonDelete from "@/UI/MyButtonDelete";
+import ApplicationsUserChip from "@/components/ApplicationsUserChip";
+import MyAvatar from "@/UI/MyAvatar";
 export default {
   components: {
+    ApplicationsUserChip,
     MyDropdownButtons,
     MyButtonReset,
     MyButtonEdit,
     MyButtonRoles,
     MyButtonDisable,
-    MyButtonDelete
+    MyButtonDelete,
+    MyAvatar
   },
   props: {
     user: {
@@ -112,19 +106,35 @@ export default {
     return {
       selectedItem: 0,
       show: false,
-      offset: true
+      offset: true,
+      status: 'active'
     }
   },
   methods: {
-    removeUser() {
-      this.$emit('removeUser')
+    ...mapActions({
+      // removeUser: 'removeUser'
+    }),
+    changeStatus() {
+      this.status = 'inactive'
     },
+    removeUser(user) {
+      this.$emit('removeUser', user)
+    }
   },
   computed: {
     ...mapState({
-      applicationsUser: state => state.applicationsRoles.applicationsUser
+      // applicationsUser: state => state.applicationsRoles.applicationsUser
     }),
+    ...mapGetters({
+      applicationUser: 'applicationUser',
+      applicationsUser: 'applicationsUser'
+    })
   },
+  watch: {
+    applicationsUser(value) {
+      console.log(value)
+    }
+  }
 }
 </script>
 

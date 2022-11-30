@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -27,6 +28,12 @@ const routes = [
     name: 'users-list-page',
     meta: {layout: 'bars'},
     component: () => import('../views/UsersListPage.vue')
+  },
+  {
+    path: '/users/:id',
+    name: 'user-page',
+    meta: {layout: 'main'},
+    component: () => import('../views/UserPage.vue')
   },
   // {
   //   path: '/about',

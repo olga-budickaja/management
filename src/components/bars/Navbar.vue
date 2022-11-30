@@ -5,7 +5,7 @@
         dark
         app
     >
-      <v-btn icon class="ml-10">
+      <v-btn icon class="ml-10" @click="$router.push('/')">
         <v-icon size="40" class="relative__icon">mdi-lock-outline</v-icon>
         <v-icon size="15" class="btn__gag" color="cyan">mdi-square</v-icon>
         <v-icon size="40" class="absolute__icon">mdi-lock-open-variant-outline</v-icon>
@@ -37,7 +37,9 @@
 
 <script>
 export default {
+  methods: {
 
+  }
 }
 </script>
 
