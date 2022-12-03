@@ -1,57 +1,66 @@
 import User from "@/store/user_help";
-// import axios from "axios";
+import axios from "axios";
+import interceptorsSetup from '@/helpers/interceptors';
+
 
 export const usersModule = {
     state: () => ({
+        logged: '',
+        token: '',
         users: [
             {
                 id: 'KJGSREJGAB',
-                surname: 'Adler',
-                firstname: 'Tim',
+                firstname: 'Adler',
+                lastname: 'Tim',
                 email: 'tim.adler@mousterage.de',
-                date: '21.10.2022',
-                time: '16:58',
+                createdOn: '2022-11-30T20:39:03.218Z',
                 username: 'adler',
+                enabled: true
             },
             {
                 id: 'RJBGTBST',
-                surname: 'Bader',
-                firstname: 'Karl',
+                firstname: 'Bader',
+                lastname: 'Karl',
                 email: 'karl.bader@mousterage.de',
-                date: '18.10.2022',
-                time: '13:16',
+                createdOn: '2022-11-30T20:39:03.218Z',
                 username: 'bader',
+                enabled: false
             },
             {
                 id: 'HDSHGGESN',
-                surname: 'Dozer',
-                firstname: 'Nadja',
+                firstname: 'Dozer',
+                lastname: 'Nadja',
                 email: 'nadja.dozer@company.de',
-                date: '16.10.2022',
-                time: '10:23',
+                createdOn: '2022-11-30T20:39:03.218Z',
                 username: 'doser',
+                enabled: true
             },
             {
                 id: 'FKNGZKNFKN',
-                surname: 'Eder',
-                firstname: 'Klaus',
+                firstname: 'Eder',
+                lastname: 'Klaus',
                 email: 'klaus.eder@company.de',
-                date: '23.10.2022',
-                time: '15:45',
+                createdOn: '2022-11-30T20:39:03.218Z',
                 username: 'eder',
+                enabled: true
             },
         ],
         user: [],
+        page: 1,
+        limit: 10,
         isLoading: false,
         status: 'active'
     }),
     getters: {
+        session: state => state.session,
+        logged: state => state.session.logged,
+        token: state => state.session.token,
         users(state) {
             return state.users
         },
         user(state) {
             return state.user
-        },
+        }
     },
     mutations: {
         setIsLoading(state, isLoading) {
@@ -63,6 +72,10 @@ export const usersModule = {
         USER_ID(state, payload) {
             state.user.push(payload)
         },
+        DELETE_USER(state, userId) {
+            let users = users.filter(u => u.id !== userId)
+            state.users = users;
+        },
         setUsers: (state, users) => {
             state.users = users
         },
@@ -71,10 +84,6 @@ export const usersModule = {
         },
         setStatus(state, status) {
             state.status = status
-        },
-        REMOVE_USER(state, userId) {
-            let users = users.filter(u => u.id !== userId)
-            state.users = users;
         },
         STATUS_USER(state, getter) {
             getter.user.push(state.status)
@@ -85,14 +94,13 @@ export const usersModule = {
             commit('setIsLoading', true);
             try {
                 const newUser = new User(
-                    payload.surname,
                     payload.firstname,
+                    payload.lastname,
                     payload.username,
                     payload.email,
                     payload.realm,
                     payload.password,
-                    payload.date,
-                    payload.time,
+                    payload.createdOn,
                     payload.id
                 )
                 const user = payload.id
@@ -108,21 +116,21 @@ export const usersModule = {
             }
 
         },
-        // getUsersFromApi({commit}) {
-        //     return axios('http://rdp.nks.com.ua:55002', {
-        //         method: 'GET'
-        //     })
-        //         .then((users) => {
-        //             commit('setUsers', users);
-        //             return users;
-        //         })
-        //         .catch((error) => {
-        //             console.log(error)
-        //             return error;
-        //         })
-        // },
+        async fetchUsers({commit}) {
+            try {
+                commit('setIsLoading', true)
+                interceptorsSetup()
+                const response = axios.get('http://rdp.nks.com.ua:55002/api/users/list')
+
+                console.log(response)
+                commit('setIsLoading', false)
+            } catch (e) {
+
+                console.log(e)
+            }
+        },
         async removeUser({commit}, user) {
-            commit('REMOVE_USER', user.id);
+            commit('DELETE_USER', user.id);
         },
         async statusUser({commit}) {
             commit('STATUS_USER')

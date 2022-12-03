@@ -1,5 +1,5 @@
 <template>
-  <v-layout row class="height hidden-xs-only white overflow-x-auto usersList relative">
+  <v-layout row class="height hidden-xs-only white overflow-y-auto usersList relative">
     <v-flex>
       <v-card class="border relative pa-6 pr-16" flat>
         <SearchUsers />
@@ -42,5 +42,8 @@ export default {
 </script>
 
 <style scoped>
-
+.usersList {
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+}
 </style>

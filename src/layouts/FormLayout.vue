@@ -27,7 +27,11 @@
                     </v-responsive>
                   </v-card>
                   <v-responsive class="pa-4 mt-5 pb-16 userList__component">
-                    <router-view :users="users" :applicationsUser="applicationsUser" @createApp="createApp"/>
+                    <router-view
+                        :users="users"
+                        :applicationsUser="applicationsUser"
+                        @createApp="createApp"
+                    />
                   </v-responsive>
                 </div>
               </v-card>
@@ -77,7 +81,7 @@ export default {
   computed: {
     ...mapState({
       users: state => state.usersModule.users,
-      applicationsUser: state => state.applicationsRoles.applicationsUser
+      applicationsUser: state => state.applicationsRoles.applicationsUser,
     }),
   }
 

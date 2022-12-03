@@ -5,7 +5,7 @@
       @click="$router.push(`/users/${user.id}`)"
   >
       <span class="blue--text text-h5 text-uppercase font-weight-bold">
-        {{ user.surname[0] + user.firstname[0] }}
+        {{ user.firstname[0] + user.lastname[0] }}
       </span>
   </v-avatar>
 </template>

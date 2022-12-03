@@ -26,7 +26,7 @@
                         @click="$router.push(`/users/${user.id}`)"
                     >
                       <v-flex xl6 sm12 md12 xs12  class="text-h6 align-self-center text-left">
-                        {{ `${user.surname}, ${user.firstname}` }}
+                        {{ `${user.firstname}, ${user.lastname}` }}
                       </v-flex>
                       <v-flex xl6 sm12 md12 xs12 class="text-body-2 align-self-center text-left">{{ user.email }}</v-flex>
                     </v-layout>
@@ -50,8 +50,8 @@
                       />
                   </v-flex>
                   <v-flex md1 class="d-flex">
-                    <div class="mr-5">{{ user.date }}</div>
-                    <div>{{ user.time }}</div>
+                    <div class="mr-5">{{ dateOn }}</div>
+                    <div>{{ timeOn }}</div>
                   </v-flex>
                 </v-layout>
               </v-flex>
@@ -77,7 +77,7 @@
 
 <script>
 import MyDropdownButtons from "@/UI/MyDropdownButtons";
-import {mapActions, mapGetters, mapState} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import MyButtonReset from "@/UI/MyButtonReset";
 import MyButtonEdit from "@/UI/MyButtonEdit";
 import MyButtonRoles from "@/UI/MyButtonRoles";
@@ -85,6 +85,7 @@ import MyButtonDisable from "@/UI/MyButtonDisable";
 import MyButtonDelete from "@/UI/MyButtonDelete";
 import ApplicationsUserChip from "@/components/ApplicationsUserChip";
 import MyAvatar from "@/UI/MyAvatar";
+
 export default {
   components: {
     ApplicationsUserChip,
@@ -117,18 +118,27 @@ export default {
     changeStatus() {
       this.status = 'inactive'
     },
-    removeUser(user) {
-      this.$emit('removeUser', user)
+    removeUser() {
+      this.$emit('remove')
     }
   },
   computed: {
-    ...mapState({
-      // applicationsUser: state => state.applicationsRoles.applicationsUser
-    }),
     ...mapGetters({
       applicationUser: 'applicationUser',
       applicationsUser: 'applicationsUser'
-    })
+    }),
+    timeOn() {
+      const data = this.user.createdOn.toString();
+      const dateCreate = data.slice(11, 16)
+      return dateCreate
+    },
+    dateOn() {
+      const data = this.user.createdOn.toString();
+      const day = data.slice(8, 10)
+      const month = data.slice(5, 7)
+      const year = data.slice(0, 4);
+      return `${day}.${month}.${year}`
+    }
   },
   watch: {
     applicationsUser(value) {

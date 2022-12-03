@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-chip v-if="app.user === userId" color="cyan lighten-5" class="mr-3">
+  <div class="pt-xl-0 pt-md-0 pt-sm-2">
+    <v-chip small v-if="app.user === userId" color="cyan lighten-5" class="mr-3">
       {{ app.roles }}
 
     </v-chip>

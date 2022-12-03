@@ -15,7 +15,6 @@ import MyButtonEdit from "@/UI/MyButtonEdit";
 import MyButtonReset from "@/UI/MyButtonReset";
 import MyButtonRoles from "@/UI/MyButtonRoles";
 import MyButtonDelete from "@/UI/MyButtonDelete";
-import MyCheckboxItem from "@/UI/MyCheckboxItem";
 import InformationUser from "@/components/user/InformationUser";
 import RolesUser from "@/components/user/RolesUser";
 import MyAvatar from "@/UI/MyAvatar";
@@ -38,7 +37,6 @@ export default [
     MyInput,
     MySelect,
     MySelectCheck,
-    MyCheckboxItem,
     InformationUser,
     RolesUser,
     MyAvatar

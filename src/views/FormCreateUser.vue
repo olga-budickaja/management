@@ -1,6 +1,6 @@
 <template>
   <v-form
-      class="formCreate"
+      class="formCreate relative"
       ref="form"
       @submit.prevent="handlerSubmit"
       v-if="!isLoading"
@@ -8,9 +8,9 @@
       <v-layout row wrap col-12>
         <v-flex md6 sm12 pl-4 pr-4 xs12>
           <my-input-add-user
-              label="Surname"
-              v-model="user.surname"
-              :value="user.surname"
+              label="Firstname"
+              v-model="user.firstname"
+              :value="user.firstname"
               :input-rules="[inputRules.required, inputRules.name, inputRules.length]"
               hide-details="auto"
               aria-required="true"
@@ -19,9 +19,9 @@
         </v-flex>
         <v-flex md6 sm12 pl-4 pr-4 xs12>
           <my-input-add-user
-              label="Firstname"
-              :value="user.firstname"
-              v-model="user.firstname"
+              label="Lastname"
+              :value="user.lastname"
+              v-model="user.lastname"
               :input-rules="[inputRules.required, inputRules.name, inputRules.length]"
               hide-details="auto"
               aria-required="true"
@@ -173,14 +173,13 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           const formData = {
-            surname: this.user.surname,
             firstname: this.user.firstname,
+            lastname: this.user.lastname,
             username: this.user.username,
             email: this.user.email,
             realm: this.user.realm,
             password: this.user.password,
-            date: `${new Date().getDate()}.${new Date().getMonth()}.${new Date().getFullYear()}`,
-            time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+            createdOn: new Date(),
             id: Math.random(),
           }
 
@@ -200,19 +199,19 @@ export default {
       this.prompt = true
       setTimeout(() => {
         this.error = false
-      }, 2500)
+      }, 2000)
     },
     routApplications() {
       setTimeout(() => {
         this.$router.push('/checkbox-create-user')
-      }, 2700)
+      }, 2300)
     },
   },
   computed: {
     ...mapState({
-      isLoading: state => state.usersModule.isLoading,
+      isLoading: state => state.isLoading,
       inputRules: state => state.formModule.inputRules,
-      users: state => state.usersModule.users,
+      users: state => state.users,
     }),
   }
 

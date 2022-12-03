@@ -19,6 +19,7 @@
       <UsersList
           :users="sortedAndSearchedUsers"
           v-if="!isLoading"
+          @remove="deleteUser"
       />
 
       <v-progress-circular
@@ -63,10 +64,18 @@ export default {
       STATUS_USER: 'STATUS_USER',
     }),
     ...mapActions({
-      statusUser: 'statusUser',
-      removeUser: 'removeUser',
+      // statusUser: 'statusUser',
       // getUsersFromApi: 'getUsersFromApi'
+      removeUser: 'removeUser',
+      fetchUsers: 'fetchUsers',
     }),
+    // async fetchUsers() {
+    //   const response = axios.get('/rdp.nks.com.ua:55002/api/users/list')
+    //   console.log(response)
+    // }
+    deleteUser(user) {
+      this.removeUser(user)
+    }
   },
   computed: {
     ...mapState({
@@ -81,8 +90,13 @@ export default {
       applicationsUser: 'applicationsUser',
       sortedUsers: 'sortedUsers',
       sortedAndSearchedUsers: 'sortedAndSearchedUsers',
+      token: 'token',
+      // removedUser: 'removedUser'
     }),
   },
+  mounted() {
+   this.fetchUsers()
+  }
 }
 </script>
 

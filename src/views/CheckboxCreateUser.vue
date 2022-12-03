@@ -13,23 +13,57 @@
       </v-layout>
       <v-form
           ref="formCheck"
+          class="pt-5 relative"
           v-if="!isLoading"
-          class="pt-5"
           @submit.prevent="submitHandler"
       >
-        <div id="main-check" class="checkSystems__item">
-          <MyCheckbox
-              v-for="value in applications"
-              :key="value.value"
-              :label="value.value"
-              :checked.sync="checkModels"
-              :itemChecked.sync="checkItemModels"
-              type="checkbox"
-              :value="value.value"
-              :items="value.roles"
-              @click="some"
-          >
-          </MyCheckbox>
+        <div id="main-check" class="checkSystems__item border text-left">
+            <v-row>
+              <v-col>
+                <v-treeview
+                    v-model="selection"
+                    :items="applications"
+                    selection-type="leaf"
+                    selectable
+                    return-object
+                    open-all
+                >
+                  <template v-slot:prepend="item">
+                    <v-avatar color="avatarIcon cyan lighten-5" size="40">
+                      <v-icon color="cyan">mdi-share-variant-outline</v-icon>
+                    </v-avatar>
+                  </template>
+                </v-treeview>
+              </v-col>
+              <v-divider vertical></v-divider>
+              <v-col
+                  class="pa-6"
+                  cols="6"
+              >
+                <template v-if="!selection.length">
+                  No nodes selected.
+                </template>
+                <template v-else>
+                    <div
+                        v-for="node in selection"
+                        :key="node.id"
+                        class="text-left"
+                    >
+                      <div>
+                        <div v-for="app in applications" :key="app.id" class="pt-1">
+                          <div v-for="(child, i) in app.children" :key="i">
+                            <div v-if="child?.name === node.name">
+                              {{ app.name }}
+                            </div>
+
+                          </div>
+                        </div>
+                          <v-chip class="chipItem" small color="cyan lighten-5">{{ node.name }}</v-chip>
+                      </div>
+                    </div>
+                </template>
+              </v-col>
+            </v-row>
         </div>
         <div class="pt-5 checkSystems__btns">
           <div class="buttons  relative text-center mt-5">
@@ -79,34 +113,31 @@ export default {
     MyTooltip
   },
   data: () => ({
-    modelApp: false,
-    checkedItem: false,
-    label: String,
-    checkItemModels: false,
-    checkModels: false,
-    active: false,
-    activeValue: 0,
     show: false,
     role: '',
     message: '',
+    item: '',
+    applicationName: [],
+    selection: [],
   }),
   methods: {
     ...mapActions({
     }),
     async submitHandler() {
-      if (!this.checkModels) {
+      if (!this.selection) {
         this.message = 'Choose at least one application'
         this.tooltipShow()
       } else {
         this.message = 'Data saved'
         this.tooltipShow()
+        this.routUsersList()
       }
       const appData = {
-        application: this.checkModels.toString(),
-        roles: this.checkItemModels.toString(),
+        application: this.selection,
         id: Math.random()
       }
       try {
+        console.log(appData)
         await this.$store.dispatch('updateApplication', appData)
         this.$emit('createApp', appData)
       } catch (e) {
@@ -119,10 +150,10 @@ export default {
         this.show = false
       }, 2000)
     },
-    some() {
-      this.checkModels.length || (this.checkItemModels.length > 0)
-          ? this.applications.active = true
-          : this.applications.active = false
+    routUsersList() {
+      setTimeout(() => {
+        this.$router.push('/users-list')
+      }, 2300)
     },
   },
   computed: {
@@ -139,13 +170,15 @@ export default {
 
 <style scoped>
 .checkSystems__item {
-  max-height: calc(100vh - 450px);
-}
-.checkSystems__item {
-  width: 100%;
+  max-height: calc(100vh - 300px);
   overflow-y: auto;
+  overflow-x: hidden;
 }
-.checkSystems__btns {
-  border-top: 1px solid #9a9a9a;
+.v-treeview-node__root .avatarIcon {
+  display: none;
 }
+.v-treeview-node__children .avatarIcon {
+  display: block;
+}
+
 </style>

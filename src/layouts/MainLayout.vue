@@ -5,7 +5,7 @@
       <Sidebar/>
       <v-responsive>
         <Toolbar/>
-        <div class="content height">
+        <div class="content">
           <v-layout col-12 row class="grey relative lighten-4">
             <v-flex md3 class="relative hidden-sm-and-down">
               <MainUsersList class="height " :users="sortedAndSearchedUsers"/>
@@ -34,8 +34,8 @@
               </router-link>
 
             </v-flex>
-            <v-flex md9>
-              <router-view/>
+            <v-flex md9 class="components">
+              <router-view @createApp="createApp" @createUser="createUser"/>
             </v-flex>
           </v-layout>
         </div>
@@ -49,7 +49,7 @@ import Navbar from "@/components/bars/Navbar";
 import Sidebar from "@/components/bars/Sidebar";
 import Toolbar from "@/components/bars/Toolbar";
 import MainUsersList from "@/components/main/MainUsersList";
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: 'main-layout',
@@ -58,6 +58,19 @@ export default {
     Navbar,
     Sidebar,
     Toolbar
+  },
+  methods: {
+    ...mapMutations({
+      setUser: 'setUser',
+      NEW_USER: 'NEW_USER',
+      NEW_APPLICATION: 'NEW_APPLICATION'
+    }),
+    createUser(user) {
+      user = this.users
+    },
+    createApp(app) {
+      app = this.updateApplication
+    }
   },
   computed: {
     ...mapGetters({
@@ -72,8 +85,11 @@ export default {
 
 <style scoped>
 .content {
-  margin-top: 13px;
+  margin-top: 1px;
+  max-height: calc(100vh - 135px);
+  overflow-y: auto;
 }
+
 .userList__btn {
   position: absolute;
   top: 30px;

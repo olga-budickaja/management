@@ -27,7 +27,7 @@ export const inputsModule = {
             });
         },
         sortedAndSearchedUsers(state, getters) {
-            return getters.sortedUsers.filter(user => user.surname.toLowerCase().includes(state.searchQuery.toLowerCase()));
+            return getters.sortedUsers.filter(user => user.firstname.toLowerCase().includes(state.searchQuery.toLowerCase()));
         },
     },
       mutations: {

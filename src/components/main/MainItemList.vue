@@ -18,7 +18,7 @@
               class="text-h6 pa-0 align-self-center text-left"
               @click="$router.push(`/users/${user.id}`)"
           >
-            {{ `${user.surname}, ${user.firstname}` }}
+            {{ `${user.firstname}, ${user.lastname}` }}
           </v-card-title>
 
           <ApplicationsUser
@@ -30,7 +30,7 @@
           />
         </v-flex>
 
-        <v-flex xl3 md3 sm3 class="align-self-center">
+        <v-flex xl3 md3 sm3 class="align-self-center text-right">
           <MyDropdownButtons>
             <my-button-edit/>
             <my-button-reset/>

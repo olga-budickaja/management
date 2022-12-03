@@ -33,7 +33,7 @@
             v-for="user in users"
             :user="user"
             :key="user.id"
-            @removeUser="removedUser"
+            @remove="remove(user.id)"
         />
       </transition-group>
     </div>
@@ -59,8 +59,7 @@ export default {
     ...mapActions({
       createUser: 'createUser',
       createApp: 'updateApplication',
-      removeUser: 'removeUser',
-      // getUsersFromApi: 'getUsersFromApi'
+      removeUser: 'removeUser'
     }),
     ...mapMutations({
       NEW_USER: 'NEW_USER',
@@ -69,9 +68,9 @@ export default {
       setApplicationsUser: 'setApplicationsUser',
       setSearchQuery: 'setSearchQuery'
     }),
-    removedUser(user) {
-      this.removeUser(user)
-    }
+    remove(user) {
+      this.$emit('remove', user)
+    },
   },
   computed: {
     ...mapState({
@@ -79,11 +78,10 @@ export default {
     }),
     ...mapGetters({
       applicationsUser: 'applicationsUser',
-      // users: 'users'
     })
   },
   // mounted() {
-  //   this.getUsersFromApi()
+  //   this.fetchUsers()
   // }
 }
 </script>

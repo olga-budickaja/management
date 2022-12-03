@@ -12,6 +12,8 @@
           :user="user"
           class="userPage"
           @remove="removedUser"
+          @createApp="createApp"
+          @createUser="createUser"
       />
     </v-responsive>
   </div>
@@ -21,7 +23,7 @@
 
 import InformationUser from "@/components/user/InformationUser";
 import RolesUser from "@/components/user/RolesUser";
-import {mapActions, mapGetters, mapState} from "vuex";
+import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   name: 'user-page',
@@ -35,9 +37,20 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      setUser: 'setUser',
+      NEW_USER: 'NEW_USER',
+      NEW_APPLICATION: 'NEW_APPLICATION'
+    }),
     ...mapActions({
       removeUser: 'removeUser'
     }),
+    createUser(user) {
+      user = this.users
+    },
+    createApp(app) {
+      app = this.updateApplication
+    },
     removedUser(user) {
       this.removeUser(user)
     }

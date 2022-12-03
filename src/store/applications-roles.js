@@ -3,35 +3,89 @@ import Application from "@/store/applications_help";
 export const applicationsRoles = {
     state: () => ({
         applications: [
-            { value: '.ACCESS', children: ['Access Manager'], active: '' },
-            { value: '.CARD', children: ['Card Management'], active: '' },
-            { value: '.CERTIFY', active: '' },
-            { value: '.EXTERNAL', children: ['Default-User', 'Onboard Manager', 'External Employee Management' ], active: '' },
-            { value: '.FM', active: '' },
-            { value: '.OM', active: '' },
-            { value: '.VISIT', children: ['Visitor Management', 'Facility-Management', 'Host of Visitors', 'Receptionist', 'Preregister ViSIT'], active: '' },
-            { value: '.WTime', active: '' },
-            { value: '#Checklisten Management', active: '' },
-            { value: '#Digitalldentity Management', children: ['DIM-Management'], active: '' },
-            { value: '#Employee Network', active: '' },
-            { value: '#FotoApp', active: '' },
-            { value: '#Onboarding', active: '' },
-            { value: '#Rooms & Resources', active: '' },
-            { value: '#Userdentity', active: '' },
+            {
+                id: 1,
+                name: '.ACCESS',
+                children: [
+                    { name: 'Access Manager' },
+                ],
+            },
+            {
+                id: 3,
+                name: '.CARD',
+                children: [
+                    { id: 4, name: 'Card Management' },
+                ],
+            },
+            {
+                id: 5,
+                name: '.CERTIFY',
+            },
+            {
+                id: 6,
+                name: '.EXTERNAL',
+                children: [
+                    { id: 7, name: 'Default-User' },
+                    { id: 8, name: 'Onboard Manager' },
+                    { id: 9, name: 'External Employee Management' },
+                ],
+            },
+            {
+                id: 10,
+                name: '.FM',
+            },
+            {
+                id: 11,
+                name: '.OM',
+            },
+            {
+                id: 12,
+                name: '.VISIT',
+                children: [
+                    { id: 13, name: 'Visitor Management' },
+                    { id: 14, name: 'Facility-Management' },
+                    { id: 15, name: 'Host of Visitors' },
+                    { id: 16, name: 'Receptionist' },
+                    { id: 17, name: 'Preregister ViSIT' },
+                ],
+            },
+            {
+                id: 19,
+                name: '.WTime',
+            },
+            {
+                id: 20,
+                name: '#Checklisten Management',
+            },
+            {
+                id: 21,
+                name: '#Digitalldentity Management',
+                children: [
+                    { id: 22, name: 'DIM-Management' },
+                ],
+            },
+            {
+                id: 23,
+                name: '#Employee Network',
+            },
+            {
+                id: 24,
+                name: '#FotoApp',
+            },
+            {
+                id: 25,
+                name: '#Onboarding',
+            },
+            {
+                id: 26,
+                name: '#Rooms & Resources',
+            },
+            {
+                id: 27,
+                name: '#Userdentity',
+            },
         ],
-        roles: [
-            { value: 'Access Manager', parent: '.ACCESS' },
-            { value: 'Card Management', parent: '.CARD' },
-            { value: 'Default-User', parent: '.EXTERNAL' },
-            { value: 'Onboard Manager', parent: '.EXTERNAL' },
-            { value: 'External Employee Management', parent: '.EXTERNAL' },
-            { value: 'Visitor Management', parent: '.VISIT' },
-            { value: 'Facility-Management', parent: '.VISIT' },
-            { value: 'Host of Visitors', parent: '.VISIT' },
-            { value: 'Receptionist', parent: '.VISIT' },
-            { value: 'Preregister ViSIT', parent: '.VISIT' },
-            { value: 'DIM-Management', parent: '#Digitalldentity Management' },
-        ],
+
         applicationsUser: [
             {application: '.CARD', roles: 'Card Management', user: 'KJGSREJGAB'},
             {application: '.CARD', roles: 'Onboard Manager', user: 'KJGSREJGAB'},
@@ -73,11 +127,10 @@ export const applicationsRoles = {
             try {
                 const newApplication = new Application(
                     payload.application,
-                    payload.roles.toString(),
                     payload.user = userId.toString(),
                     payload.id
                 );
-                const app = payload.id
+                const app = payload.user
 
                 commit('APPLICATION_ID', app)
                 commit('NEW_APPLICATION', {

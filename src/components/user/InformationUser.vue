@@ -8,7 +8,7 @@
           </v-flex>
           <v-flex md8 align-self-center>
             <v-card-text class="grey--text pa-0">Name</v-card-text>
-            <v-card-title class="text-h5 pa-0">{{ `${user.surname} ${user.firstname}` }}</v-card-title>
+            <v-card-title class="text-h5 pa-0">{{ `${user.firstname} ${user.lastname}` }}</v-card-title>
           </v-flex>
           <v-flex md3>
             <v-layout col-12 class="pa-0">
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
 import MyAvatar from "@/UI/MyAvatar";
 import MyDropdownButtons from "@/UI/MyDropdownButtons";
 import MyButtonReset from "@/UI/MyButtonReset";
@@ -86,6 +86,10 @@ export default {
     status: 'active'
   }),
   methods: {
+    ...mapMutations({
+      setUsers: "setUsers",
+      NEW_USER: 'NEW_USER'
+    }),
     ...mapActions({
     }),
     changeStatus() {
