@@ -116,12 +116,14 @@ export const usersModule = {
             }
 
         },
-        async fetchUsers({commit}) {
+        async fetchUsers({commit, state}) {
             try {
                 commit('setIsLoading', true)
                 interceptorsSetup()
                 const response = axios.get('http://rdp.nks.com.ua:55002/api/users/list')
-
+                    .then(response => {
+                        state.user = response.data
+                    })
                 console.log(response)
                 commit('setIsLoading', false)
             } catch (e) {

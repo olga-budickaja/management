@@ -18,7 +18,6 @@ import BarsLayout from "@/layouts/BarsLayout";
 import {mapActions, mapGetters, mapState} from "vuex";
 import {updateToken} from "@/middlewares/update-token";
 import axios from "axios";
-import interceptorsSetup from '@/helpers/interceptors';
 
 const AUTHORIZATION_HEADER = "Authorization";
 
@@ -31,7 +30,6 @@ export default {
   },
 
   created: function () {
-    interceptorsSetup();
     axios.interceptors.request.use(async (config) => {
       const token = await updateToken();
       config.headers.common[AUTHORIZATION_HEADER] = `Bearer ${token}`;

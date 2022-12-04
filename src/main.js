@@ -7,6 +7,7 @@ import router from './router'
 import components from "@/UI";
 import {store} from './store/index'
 import auth from "@/plugins/keykloak"
+import {updateToken} from "@/middlewares/update-token";
 
 components.forEach(component => {
   Vue.component(component.name, component)
@@ -42,6 +43,7 @@ Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false })
     if (!auth) {
         window.location.reload();
     } else {
+
         new Vue({
             vuetify,
             icons: {
@@ -53,7 +55,7 @@ Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false })
         }).$mount('#app')
 
         window.onfocus = () => {
-
+            updateToken()
         }
     }
 })
