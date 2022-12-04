@@ -6,7 +6,6 @@ import App from './App.vue'
 import router from './router'
 import components from "@/UI";
 import {store} from './store/index'
-import {updateToken} from "@/middlewares/update-token";
 import auth from "@/plugins/keykloak"
 
 components.forEach(component => {
@@ -18,27 +17,28 @@ Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
-Vue.$keycloak
-    .init({onLoad: 'login-required', checkLoginIframe: false})
-    .then(() => {
-        new Vue({
-            vuetify,
-            icons: {
-                iconfont: 'mdi'
-            },
-            store,
-            router,
-            render: h => h(App)
-        }).$mount('#app')
+// Vue.$keycloak
+//     .init({onLoad: 'login-required', checkLoginIframe: false})
+//     .then(() => {
+//         new Vue({
+//             vuetify,
+//             icons: {
+//                 iconfont: 'mdi'
+//             },
+//             store,
+//             router,
+//             render: h => h(App)
+//         }).$mount('#app')
+//
+//         window.onfocus = () => {
+//              updateToken();
+//         };
+//
+//     })
 
-        window.onfocus = () => {
-             updateToken();
-        };
 
-    })
-
-
-Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false }).then((auth) => {
+Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false })
+    .then((auth) => {
     if (!auth) {
         window.location.reload();
     } else {

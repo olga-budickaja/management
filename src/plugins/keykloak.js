@@ -9,21 +9,10 @@ const initOptions = {
 
 const keycloak = Keycloak(initOptions)
 
-export const KeycloakPlugin = {
+const KeycloakPlugin = {
     install: Vue => {
         Vue.$keycloak = keycloak
     }
-}
-
-KeycloakPlugin.install = Vue => {
-    Vue.$keycloak = keycloak
-    Object.defineProperties(Vue.prototype, {
-        $keycloak: {
-            get() {
-                return keycloak
-            }
-        }
-    })
 }
 
 Vue.use(KeycloakPlugin)

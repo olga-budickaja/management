@@ -20,6 +20,8 @@ import {updateToken} from "@/middlewares/update-token";
 import axios from "axios";
 import interceptorsSetup from '@/helpers/interceptors';
 
+const AUTHORIZATION_HEADER = "Authorization";
+
 export default {
   name: 'App',
   components: {
@@ -27,8 +29,14 @@ export default {
     FormLayout,
     BarsLayout
   },
+
   created: function () {
     interceptorsSetup();
+    axios.interceptors.request.use(async (config) => {
+      const token = await updateToken();
+      config.headers.common[AUTHORIZATION_HEADER] = `Bearer ${token}`;
+      return config;
+    });
 
     axios.interceptors.response.use(
         (response) => {
