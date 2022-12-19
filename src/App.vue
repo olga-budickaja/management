@@ -18,8 +18,7 @@ import BarsLayout from "@/layouts/BarsLayout";
 import {mapActions, mapGetters, mapState} from "vuex";
 import {updateToken} from "@/middlewares/update-token";
 import axios from "axios";
-
-const AUTHORIZATION_HEADER = "Authorization";
+import interceptorsSetup from '@/helpers/interceptors';
 
 export default {
   name: 'App',
@@ -28,14 +27,8 @@ export default {
     FormLayout,
     BarsLayout
   },
-
-  created: function () {
-    axios.interceptors.request.use(async (config) => {
-      const token = await updateToken();
-      config.headers.common[AUTHORIZATION_HEADER] = `Bearer ${token}`;
-      return config;
-    });
-
+  beforeCreated() {
+    interceptorsSetup();
     axios.interceptors.response.use(
         (response) => {
           return response;
@@ -62,11 +55,9 @@ export default {
     updateApplication(app) {
       app = this.applicationsUser
     },
-
   },
   computed: {
     ...mapState({
-
     }),
     ...mapGetters({
       users: 'users',

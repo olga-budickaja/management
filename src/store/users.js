@@ -120,14 +120,12 @@ export const usersModule = {
             try {
                 commit('setIsLoading', true)
                 interceptorsSetup()
-                const response = axios.get('http://rdp.nks.com.ua:55002/api/users/list')
+                axios.get('http://rdp.nks.com.ua:55002/api/users/list')
                     .then(response => {
-                        state.user = response.data
+                        state.users = response.data.data.users
                     })
-                console.log(response)
                 commit('setIsLoading', false)
             } catch (e) {
-
                 console.log(e)
             }
         },
@@ -138,5 +136,5 @@ export const usersModule = {
             commit('STATUS_USER')
         }
     },
-    namespaced: false
+
 }

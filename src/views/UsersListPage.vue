@@ -69,10 +69,6 @@ export default {
       removeUser: 'removeUser',
       fetchUsers: 'fetchUsers',
     }),
-    // async fetchUsers() {
-    //   const response = axios.get('/rdp.nks.com.ua:55002/api/users/list')
-    //   console.log(response)
-    // }
     deleteUser(user) {
       this.removeUser(user)
     }
@@ -90,12 +86,11 @@ export default {
       applicationsUser: 'applicationsUser',
       sortedUsers: 'sortedUsers',
       sortedAndSearchedUsers: 'sortedAndSearchedUsers',
-      token: 'token',
       // removedUser: 'removedUser'
     }),
   },
   mounted() {
-   this.fetchUsers()
+    this.fetchUsers()
   }
 }
 </script>

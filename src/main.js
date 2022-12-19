@@ -7,10 +7,9 @@ import router from './router'
 import components from "@/UI";
 import {store} from './store/index'
 import auth from "@/plugins/keykloak"
-import {updateToken} from "@/middlewares/update-token";
 
 components.forEach(component => {
-  Vue.component(component.name, component)
+    Vue.component(component.name, component)
 })
 
 Vue.use(auth)
@@ -18,32 +17,10 @@ Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
-// Vue.$keycloak
-//     .init({onLoad: 'login-required', checkLoginIframe: false})
-//     .then(() => {
-//         new Vue({
-//             vuetify,
-//             icons: {
-//                 iconfont: 'mdi'
-//             },
-//             store,
-//             router,
-//             render: h => h(App)
-//         }).$mount('#app')
-//
-//         window.onfocus = () => {
-//              updateToken();
-//         };
-//
-//     })
-
-
-Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false })
-    .then((auth) => {
+Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false }).then((auth) => {
     if (!auth) {
         window.location.reload();
     } else {
-
         new Vue({
             vuetify,
             icons: {
@@ -55,8 +32,7 @@ Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false })
         }).$mount('#app')
 
         window.onfocus = () => {
-            updateToken()
+
         }
     }
 })
-
