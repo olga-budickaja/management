@@ -1,3 +1,42 @@
+// import Vue from 'vue'
+// import Vuex from "vuex";
+// import vuetify from './plugins/vuetify'
+// import '@mdi/font/css/materialdesignicons.css'
+// import App from './App.vue'
+// import router from './router'
+// import components from "@/UI";
+// import {store} from './store/index'
+// import auth from "@/plugins/keykloak"
+//
+// components.forEach(component => {
+//     Vue.component(component.name, component)
+// })
+//
+// Vue.use(auth)
+// Vue.use(Vuex)
+//
+// Vue.config.productionTip = false
+//
+// Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false }).then((auth) => {
+//     if (!auth) {
+//         window.location.reload();
+//     } else {
+//         new Vue({
+//             vuetify,
+//             icons: {
+//                 iconfont: 'mdi'
+//             },
+//             store,
+//             router,
+//             render: h => h(App)
+//         }).$mount('#app')
+//
+//         window.onfocus = () => {
+//
+//         }
+//     }
+// })
+
 import Vue from 'vue'
 import Vuex from "vuex";
 import vuetify from './plugins/vuetify'
@@ -6,33 +45,27 @@ import App from './App.vue'
 import router from './router'
 import components from "@/UI";
 import {store} from './store/index'
-import auth from "@/plugins/keykloak"
+import i18n from './i18n'
+
 
 components.forEach(component => {
     Vue.component(component.name, component)
 })
 
-Vue.use(auth)
+
 Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
-Vue.$keycloak.init({ onLoad: 'login-required', checkLoginIframe: false }).then((auth) => {
-    if (!auth) {
-        window.location.reload();
-    } else {
-        new Vue({
-            vuetify,
-            icons: {
-                iconfont: 'mdi'
-            },
-            store,
-            router,
-            render: h => h(App)
-        }).$mount('#app')
+new Vue({
+    vuetify,
 
-        window.onfocus = () => {
+    icons: {
+        iconfont: 'mdi'
+    },
 
-        }
-    }
-})
+    store,
+    router,
+    i18n,
+    render: h => h(App)
+}).$mount('#app')

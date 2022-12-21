@@ -3,7 +3,7 @@
     <v-toolbar-title
         class="text-h4 mx-14 text--lighten-10"
     >
-      Users
+      {{ $t('title.tool') }}
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <router-link to="/form-create-user">

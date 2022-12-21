@@ -1,0 +1,10 @@
+{
+  "title": {
+    "main": "Add a new user.",
+    "tool": "Users"
+  },
+  "buttons": {
+    "main": "Create user"
+  },
+  "search": "Search..."
+}

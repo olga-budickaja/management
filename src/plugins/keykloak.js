@@ -2,9 +2,9 @@ import Keycloak from 'keycloak-js'
 import Vue from "vue";
 
 const initOptions = {
-    url: process.env.VUE_APP_KEYCLOAK_URL,
-    realm: process.env.VUE_APP_KEYCLOAK_REALM,
-    clientId: process.env.VUE_APP_KEYCLOAK_CLIENT_ID,
+    url: 'https://keycloak.nks.com.ua/auth',
+    realm: 'rm_dev_realm',
+    clientId: 'ui_dev',
 }
 
 const keycloak = Keycloak(initOptions)

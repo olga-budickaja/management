@@ -3,7 +3,7 @@
       :value="surname"
       :input.sync="$store.state.inputsModule.searchQuery"
       @update:input="setSearchQuery"
-      label="Search..."
+      :label="`${$t('search')}`"
       class="mt-5"
   />
 </template>

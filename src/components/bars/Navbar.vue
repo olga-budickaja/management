@@ -14,13 +14,14 @@
       <v-toolbar-title class="ml-6" @click="$router.push('/')">Usermanagement</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
+      <LocaleSwitcher/>
       <v-btn
           depressed
           fab
           small
           class="
           mr-10
+          ml-5
           cyan--text
           text--white
           text-uppercase
@@ -36,9 +37,10 @@
 </template>
 
 <script>
+import LocaleSwitcher from "@/components/LokalSwitcher";
 export default {
+  components: {LocaleSwitcher},
   methods: {
-
   }
 }
 </script>
